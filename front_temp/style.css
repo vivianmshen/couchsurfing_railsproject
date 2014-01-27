@@ -1,11 +1,18 @@
 body {
 	font-family: "Century Gothic", Helvetica, Arial, sans-serif;
+	margin: 0px;
+	padding: 0px;
 }
 
 #header {
-	font-size: 36px;
+	font-size: 24px;
 	font-variant: small-caps;
+	margin: 0px;
 	padding: 0px 100px 0px 100px;
+}
+
+#bar {
+	background: #DCDCFF;
 }
 
 #home {
@@ -38,7 +45,7 @@ img.home {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 800px;
+	width: 1000px;
 }
 
 img.city {
@@ -52,15 +59,21 @@ a {
 	text-decoration: none;
 }
 
+#header h1 {
+	margin: 0px;
+}
+
 #home h1 {
 	color: white;
 	position: absolute;
 	text-align: center;
-	text-shadow: 0 0 0.2em #0000EE, 0 0 0.2em #0000EE;
-	top: 10px;
+	text-shadow: 0 0 0.3em #0000EE, 0 0 0.3em #0000EE;
+	top: 300px;
 	width: 100%;
 }
 
-h2 {
+h1 {
+}
 
+h2 {
 }

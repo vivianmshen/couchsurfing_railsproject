@@ -9,12 +9,32 @@
   <body>
 
   	<div id="header">
-      <h2><a href="index.html">Friendswap</a></h2>
+      <table class="home">
+        <tr>
+          <td><h1><a href="index.html">Friendswap</a></h1></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a href="">Explore</a></td>
+          <td><a href="">Dashboard</a></td>
+      </table>
   	</div>
+
+    <div id="bar">
+      <br />
+    </div>
 
   	<div id="home">
       <img class="home" src="img/home1.jpg" alt=""/>
-      <h1 >Travel the world. Live like a local.</h1>
+      <h1>
+        Travel the world. Live like a local.
+        <br />
+        <select onchange="this.form.submit()">
+          <option value="" disabled="disabled" selected="selected">Choose a Place</option>
+          <option value="sanfrancisco">San Francisco</option>
+          <option value="newyork">New York</option>       
+        </select>
+      </h1>
   	</div>
 
   	<div id="places">
