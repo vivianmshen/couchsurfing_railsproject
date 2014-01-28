@@ -10,4 +10,9 @@ class ListingsController < ApplicationController
   def user
   	@user = User.find(params[:id])
   end
+
+  def listing
+
+  end
+  
 end
