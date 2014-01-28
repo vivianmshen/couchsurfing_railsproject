@@ -3,5 +3,12 @@
 <h3>Hangout in these cities:</h3>
 
 
+
+<% @users.each do |user| %>
+	<!--<%= name = user.name %>-->
+  	<h3><%= link_to user.name, :controller => 'listings', :action => 'user', :id => user.id%></h3>
+<% end %>
+
 <h2><%= link_to 'San Francisco', :controller => 'listings', :action => 'sanfrancisco'%></h2>
 <h2><%= link_to 'New York', :controller => 'listings', :action => 'newyork'%></h2>
+
