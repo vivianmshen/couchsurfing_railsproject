@@ -1,6 +1,7 @@
 Friendswap::Application.routes.draw do
   get "listings/index"
   get "listings/sanfrancisco"
+  get 'listings/user/:id' => 'listings#user'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -56,4 +57,5 @@ Friendswap::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  #match ':controller(/:action(/:id))(.:format)'
 end

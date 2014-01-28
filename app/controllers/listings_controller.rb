@@ -1,9 +1,13 @@
 class ListingsController < ApplicationController
   def index
-  	@users = Listing.all
+  	@users = User.all
   end
 
   def sanfrancisco
   	
+  end
+
+  def user
+  	@user = User.find(params[:id])
   end
 end

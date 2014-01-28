@@ -5,6 +5,6 @@
 <h2><%= link_to 'San Francisco', :controller => 'listings', :action => 'sanfrancisco'%></h2>
 
 <% @users.each do |user| %>
-  <h3><%= user.name %></h3>
-  Hi
+	<!--<%= name = user.name %>-->
+  	<h3><%= link_to user.name, :controller => 'listings', :action => 'user', :id => user.id%></h3>
 <% end %>
