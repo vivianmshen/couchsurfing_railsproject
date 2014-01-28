@@ -1,15 +1,13 @@
-<h1>San Francisco</h1>
+<h1>New York</h1>
 
 <h2>Find an activity</h2>
 
-
 <% @categories.each do |c| %>
-  <h3><%= c.category %></h3>
+  <%= c.category %>
 <% end %>
 
-<h2>All Listings for San Francisco</h2>
+<h2>All Listings for New York</h2>
 <% @categories.each do |c| %>
   <h3><%= c.name %></h3>
   <%= c.description %>
 <% end %>
-

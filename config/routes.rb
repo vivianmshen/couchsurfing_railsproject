@@ -1,5 +1,6 @@
 Friendswap::Application.routes.draw do
   get "listings/index"
+  get "listings/newyork"
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
