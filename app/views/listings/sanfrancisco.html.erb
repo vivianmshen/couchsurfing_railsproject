@@ -4,7 +4,8 @@
 
 
 <% @categories.each do |c| %>
-  <h3><%= c.category %></h3>
+	<h3><%= link_to c.category, :controller => 'listings', :action => 'category', :id => c.category%></h3>
+  <!--<h3><%= c.category %></h3>-->
 <% end %>
 
 <h2>All Listings for San Francisco</h2>
