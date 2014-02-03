@@ -26,4 +26,21 @@ class ListingsController < ApplicationController
     #@listings = Listing.find_all_by_city(params[])
   end
 
+  def create
+    @listing = Listing.new
+    @users = User.all
+  end
+  
+  def post_create
+    @listing = Listing.new
+    @listing.name = params[:listing][:name]
+    @listing.description = params[:listing][:description]
+    @listing.city = params[:listing][:city]
+    @listing.category =params[:listing][:category]
+    @listing.user = User.find(params[:listing][:user_id])
+    @listing.save()
+    flash[:notice] = "Listing added successfully."
+    redirect_to :action => :create
+  end
+
 end
