@@ -42,4 +42,22 @@ class ListingsController < ApplicationController
   #  $city = "ny"
   #end
 
+  def create
+    @listing = Listing.new
+    @users = User.all
+  end
+  
+  def post_create
+    @listing = Listing.new
+    @listing.name = params[:listing][:name]
+    @listing.description = params[:listing][:description]
+    @listing.city = params[:listing][:city]
+    @listing.category =params[:listing][:category]
+    @listing.user = User.find(params[:listing][:user_id])
+    @listing.save()
+    flash[:notice] = "Listing added successfully."
+    redirect_to :action => :create
+  end
+>>>>>>> 3644ffc6f82b233e810743c4495c407078889394
+
 end
