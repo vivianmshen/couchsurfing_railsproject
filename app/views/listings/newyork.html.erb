@@ -1,13 +1,14 @@
 <h1>New York</h1>
 
 <h2>Find an activity</h2>
-
+<% $city = "ny" %>
 <% @categories.each do |c| %>
-  <%= c.category %>
+	<h3><%= link_to c.category, :controller => 'listings', :action => 'category', :id => c.category, :city => 'ny'%></h3>
+  <!--<h3><%= c.category %></h3>-->
 <% end %>
 
 <h2>All Listings for New York</h2>
-<% @categories.each do |c| %>
-  <h3><%= c.name %></h3>
-  <%= c.description %>
+<% @listings.each do |l| %>
+  <h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
+  <%= l.description %>
 <% end %>

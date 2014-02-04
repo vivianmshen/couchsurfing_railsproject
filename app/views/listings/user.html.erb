@@ -1,5 +1,10 @@
 <% if @user != nil %>
 	<h1><%= @user.name%></h1>
+	<h2>All Listings for <%= @user.name%></h2>
+		<% @listings.each do |l| %>
+  			<h3><%= l.name %></h3>
+  			<%= l.description %>
+		<% end %>
 <% else %>
 	<h1> asdfasdf</h1>
 <%end%>

@@ -4,8 +4,15 @@ Friendswap::Application.routes.draw do
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
-  get 'listings/sanfrancisco/:id' => 'listings#category'
-  get 'listings/newyork/:id' => 'listings#category'
+  
+  get "listings/city/:city" => "listings#city"
+  get "listings/city/:city/:id" => "listings#category"
+
+  get "listings/newyork/:id/city=:city" => "listings#category"
+  get "listings/sanfrancisco/:id/city=:city" => "listings#category"
+  #get 'listings/newyork/:id' => 'listings#newyork#category'
+  #get 'listings/sanfrancisco/:id' => 'listings#sanfrancisco#category'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

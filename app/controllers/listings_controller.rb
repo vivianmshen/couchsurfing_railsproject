@@ -3,27 +3,43 @@ class ListingsController < ApplicationController
   	@users = User.all
   end
 
-  def sanfrancisco
-  	@categories = Listing.find_all_by_city('San Francisco')
-    $city = "sf"
-  end
-
   def user
   	@user = User.find(params[:id])
+    @listings = User.find(params[:id]).listings
   end
 
   def listing
-    @user = Listing.find(params[:id])
+    @listing = Listing.find(params[:id])
   end
-  
-  def newyork
-  	@categories = Listing.find_all_by_city('New York')
-    $city = "ny"
+
+  def city
+    if params[:city] == "sf"
+      @listings = Listing.find_all_by_city('San Francisco')
+      @categories = Listing.find_all_by_city('San Francisco')
+    elsif params[:city] == "ny"
+      @listings = Listing.find_all_by_city('New York')
+      @categories = Listing.find_all_by_city('New York')
+    end
   end
 
   def category
-    
-    #@listings = Listing.find_all_by_city(params[])
+    if params[:city] == "sf"
+      @listings = Listing.find_all_by_city('San Francisco')
+    elsif params[:city] == "ny"
+      @listings = Listing.find_all_by_city('New York')
+    end
   end
+
+  #def sanfrancisco
+  #  @listings = Listing.find_all_by_city('San Francisco')
+  #  @categories = Listing.find_all_by_city('San Francisco')
+  #  $city = "sf"
+  #end
+
+  #def newyork
+  #  @listings = Listing.find_all_by_city('New York')
+  #  @categories = Listing.find_all_by_city('New York')
+  #  $city = "ny"
+  #end
 
 end
