@@ -58,6 +58,5 @@ class ListingsController < ApplicationController
     flash[:notice] = "Listing added successfully."
     redirect_to :action => :create
   end
->>>>>>> 3644ffc6f82b233e810743c4495c407078889394
 
 end
