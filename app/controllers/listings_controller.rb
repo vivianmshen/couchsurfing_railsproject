@@ -14,20 +14,21 @@ class ListingsController < ApplicationController
 
   def city
     if params[:city] == "sf"
-      @listings = Listing.find_all_by_city('San Francisco')
-      @categories = Listing.find_all_by_city('San Francisco')
+      @city = "San Francisco"
     elsif params[:city] == "ny"
-      @listings = Listing.find_all_by_city('New York')
-      @categories = Listing.find_all_by_city('New York')
+      @city = "New York"
     end
+    @listings = Listing.find_all_by_city(@city)
+    @categories = Listing.find_all_by_city(@city)
   end
 
   def category
     if params[:city] == "sf"
-      @listings = Listing.find_all_by_city('San Francisco')
+      @city = "San Francisco"
     elsif params[:city] == "ny"
-      @listings = Listing.find_all_by_city('New York')
+      @city = "New York"
     end
+    @listings = Listing.find_all_by_city(@city)
   end
 
   #def sanfrancisco

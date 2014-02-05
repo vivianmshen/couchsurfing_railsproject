@@ -7,11 +7,11 @@ Friendswap::Application.routes.draw do
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
   
-  get "listings/city/:city" => "listings#city"
-  get "listings/city/:city/:id" => "listings#category"
+  get "listings/:city" => "listings#city"
+  get "listings/:city/:id" => "listings#category"
 
-  get "listings/newyork/:id/city=:city" => "listings#category"
-  get "listings/sanfrancisco/:id/city=:city" => "listings#category"
+  #get "listings/newyork/:id/city=:city" => "listings#category"
+  #get "listings/sanfrancisco/:id/city=:city" => "listings#category"
   #get 'listings/newyork/:id' => 'listings#newyork#category'
   #get 'listings/sanfrancisco/:id' => 'listings#sanfrancisco#category'
   
