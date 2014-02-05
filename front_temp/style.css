@@ -1,18 +1,16 @@
 body {
+	background: #DCDCFF;
 	font-family: "Century Gothic", Helvetica, Arial, sans-serif;
 	margin: 0px;
 	padding: 0px;
 }
 
 #header {
+	background: white;
 	font-size: 24px;
 	font-variant: small-caps;
-	margin: 0px;
+	margin: 0px 0px 2px 0px;
 	padding: 0px 100px 0px 100px;
-}
-
-#bar {
-	background: #DCDCFF;
 }
 
 #home {
@@ -21,7 +19,7 @@ body {
 }
 
 #places {
-	background: #DCDCFF;
+	background: #BBBBFF;
 	padding: 10px 100px 20px 100px;
 }
 
@@ -45,7 +43,7 @@ img.home {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1000px;
+	width: 1340px;
 }
 
 img.city {
@@ -67,8 +65,8 @@ a {
 	color: white;
 	position: absolute;
 	text-align: center;
-	text-shadow: 0 0 0.3em #0000EE, 0 0 0.3em #0000EE;
-	top: 300px;
+	text-shadow: 0 0 0.1in #0000EE, 0 0 0.2in #0000EE, 0 0 0.3in #0000EE;
+	top: 250px;
 	width: 100%;
 }
 
