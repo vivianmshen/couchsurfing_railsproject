@@ -1,16 +1,24 @@
-<h1>Welcome to FriendSwap!</h1>
 
-<h3>Hangout in these cities:</h3>
+<div id="home">
+  <%= image_tag("home1.jpg", :alt => "", :class => "home") %>
+  <h4>Live like a local.
+    <br />
+  <select name="city" value="" class="select-block" onchange="this.form.submit()">
+    <option value="" disabled="disabled" selected="selected">Choose a Place</option>
+    <option value="sanfrancisco">San Francisco</option>
+    <option value="newyork">New York</option>       
+  </select>
+  </h4>
+</div>
 
-<!-- to list individual users
-<% @users.each do |user| %>
-  	<h3><%= link_to user.name, :controller => 'listings', :action => 'user', :id => user.id%></h3>
-<% end %>
--->
-
-<h2><%= link_to 'SF', :controller => 'listings', :action => 'city', :city => 'sf'%></h2>
-<h2><%= link_to 'NY', :controller => 'listings', :action => 'city', :city => 'ny'%></h2>
-
-<h2><%= link_to 'San Francisco', :controller => 'listings', :action => 'sanfrancisco'%></h2>
-<h2><%= link_to 'New York', :controller => 'listings', :action => 'newyork'%></h2>
-
+<div id="places">
+  <h4>Explore Places</h4>
+  <table class="main">
+    <tr>
+      <td><%= link_to image_tag("city_sf.jpg", :at =>"sf", :class => "city"), :controller => 'listings', :action => 'sanfrancisco'%></td>
+      <td><%= link_to image_tag("city_ny.jpg", :at =>"ny", :class => "city"), :controller => 'listings', :action => 'newyork'%></td>
+      <td><%= link_to image_tag("city_sf.jpg", :at =>"sf", :class => "city"), :controller => 'listings', :action => 'sanfrancisco'%></td>
+      <td><%= link_to image_tag("city_ny.jpg", :at =>"ny", :class => "city"), :controller => 'listings', :action => 'newyork'%></td>
+    </tr>
+  </table>
+</div>
