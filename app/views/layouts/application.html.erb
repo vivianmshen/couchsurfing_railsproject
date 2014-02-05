@@ -1,90 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
   <title>Friendswap</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-
 <body>
-    <div id="fb-root"></div>    
-    <script>
-      window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '204339756430861',
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
-
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
-        if (response.status === 'connected') {
-          testAPI();
-        } else if (response.status === 'not_authorized') {
-          FB.login();
-        } else {
-          FB.login();
-        }
-      });
-      };
-
-      // Load the SDK asynchronously
-      (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=204339756430861";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-      // Here we run a very simple test of the Graph API after login is successful. 
-      // This testAPI() function is only called in those cases. 
-      function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-          console.log('Good to see you, ' + response.name + '.');
-        });
-      }
-    </script>
-
-  	<div id="header">
-      <h1><a href="">Friendswap</a></h1>
-      <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse-01">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="">Explore</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard <b class="caret"></b></a>
-              <span class="dropdown-arrow"></span>
-              <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Messages</a></li>
-                <li><a href="#">Listings</a></li>
-              </ul>
-            </li>
-            <li><div class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div></li>
-           </ul>
-        </div><!-- /.navbar-collapse -->
-      </nav><!-- /navbar -->
-  	</div>
 
 <%= yield %>
 
-    <div id="footer">
-      <table class="main">
-        <tr>
-          <td><a href="">About Friendswap</a></td>
-          <td><a href="">Customer Service</a></td>
-      </table>
-    </div>
-  </div>
 </body>
 </html>
