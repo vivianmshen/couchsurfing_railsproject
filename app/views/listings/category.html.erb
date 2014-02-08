@@ -1,0 +1,8 @@
+<h2>All <%= params[:id] %> Listings for <%= @city %></h2>
+<% @listings.each do |l| %>
+  <% if l.category == params[:id] %>
+	<h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
+  	<h3><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h3>
+  	<%= l.description %>
+  <% end %>
+<% end %>

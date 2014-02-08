@@ -1,0 +1,12 @@
+<h1>Upload a Photo<%= params[:id]%></h1> 
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p><br/>
+<% end %>
+
+<%= form_tag("/listings/post_photo", :method => "post", :multipart => true) do %>
+  <%= label_tag(:photo, "Upload Photo") %>
+  <%= file_field_tag(:photo) %>
+  <%= hidden_field(:id, params[:id]) %>
+  <%= submit_tag("Submit") %>
+<% end %>
