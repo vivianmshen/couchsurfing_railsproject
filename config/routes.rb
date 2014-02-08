@@ -6,6 +6,10 @@ Friendswap::Application.routes.draw do
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
+
+  match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
+  match "/auth/failure", :to => redirect('/'), via: [:get, :post]
+  match "singout", to: "sesions#destroy", as: 'signout', via: [:get, :post]
   
   get "listings/city/:city" => "listings#city"
   get "listings/city/:city/:id" => "listings#category"
