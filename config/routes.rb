@@ -2,20 +2,24 @@ Friendswap::Application.routes.draw do
   get "listings/index"
   get "listings/create"
   post "listings/post_create"
+  match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
+  match "/auth/failure", :to => redirect('/'), via: [:get, :post]
+  match "singout", to: "sesions#destroy", as: 'signout', via: [:get, :post]
+
   get "listings/newyork"
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
-
-  match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
-  match "/auth/failure", :to => redirect('/'), via: [:get, :post]
-  match "singout", to: "sesions#destroy", as: 'signout', via: [:get, :post]
+  get 'listings/listing/:id/photo' => 'listings#photo'
   
-  get "listings/city/:city" => "listings#city"
-  get "listings/city/:city/:id" => "listings#category"
+  get "listings/:city" => "listings#city"
+  get "listings/:city/:id" => "listings#category"
 
-  get "listings/newyork/:id/city=:city" => "listings#category"
-  get "listings/sanfrancisco/:id/city=:city" => "listings#category"
+  post "listings/post_photo" 
+  #get "listings/photo/:id" => "listings#photo"
+
+  #get "listings/newyork/:id/city=:city" => "listings#category"
+  #get "listings/sanfrancisco/:id/city=:city" => "listings#category"
   #get 'listings/newyork/:id' => 'listings#newyork#category'
   #get 'listings/sanfrancisco/:id' => 'listings#sanfrancisco#category'
   
