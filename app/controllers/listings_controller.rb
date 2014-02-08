@@ -31,6 +31,23 @@ class ListingsController < ApplicationController
     @listings = Listing.find_all_by_city(@city)
   end
 
+  def photo
+    @city = "sf"
+  end
+
+  def post_photo
+    picture = params[:photo]
+    if picture == nil
+      flash[:notice] = "Please enter a valid photo name."
+      redirect_to :action => :photo
+    else
+      file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
+      file.write(picture.read)
+      #Listing.new = Listing.find(params[:id])
+      redirect_to :action => :listing, :id => params[:id]
+    end
+  end
+
   #def sanfrancisco
   #  @listings = Listing.find_all_by_city('San Francisco')
   #  @categories = Listing.find_all_by_city('San Francisco')
@@ -49,15 +66,24 @@ class ListingsController < ApplicationController
   end
   
   def post_create
-    @listing = Listing.new
-    @listing.name = params[:listing][:name]
-    @listing.description = params[:listing][:description]
-    @listing.city = params[:listing][:city]
-    @listing.category =params[:listing][:category]
-    @listing.user = User.find(params[:listing][:user_id])
-    @listing.save()
-    flash[:notice] = "Listing added successfully."
-    redirect_to :action => :create
+    picture = params[:photo]
+    if picture == nil
+      flash[:notice] = "Please enter a valid photo name."
+      redirect_to :action => :create
+    else
+      file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
+      file.write(picture.read)
+      @listing = Listing.new
+      @listing.name = params[:name]
+      @listing.description = params[:description]
+      @listing.city = params[:city]
+      @listing.category =params[:category]
+      @listing.user = User.find(params[:user_id])
+      @listing.photo = picture.original_filename
+      @listing.save()
+      flash[:notice] = "Listing added successfully."
+      redirect_to :action => :create
+    end
   end
 
 end

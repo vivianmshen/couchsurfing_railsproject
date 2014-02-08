@@ -1,11 +1,31 @@
 <h1>Create a Listing</h1>
 
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p><br/>
+<% end %>
 
-<%= form_for(@listing, :url => {:controller => 'listings', :action => 'post_create'}) do |form| %>
+<%= form_tag("/listings/post_create", :method => "post", :multipart => true) do %>
+  <div><%= label_tag(:name, "Name") %>
+  <%= text_field_tag(:name) %></div>
+  <div><%= label_tag(:description, "Description") %>
+  <%= text_area_tag(:description) %>
+  <div><%= label_tag(:category, "Category") %>
+  <%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']) %></div>
+  <%= select_tag :city, options_for_select(['New York', 'San Francisco']) %></div>
+  <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %>
+  <div><%= label_tag(:photo, "Upload Photo") %>
+  <%= file_field_tag(:photo) %></div>
+  <%= submit_tag("Submit") %>
+<% end %>
+
+
+<!--<%= form_for(@listing, :url => {:controller => 'listings', :action => 'post_create'}) do |form| %>
   <div>Name: <%= form.text_field(:name) %></div>
   <div>Description: <%= form.text_area(:description) %></div>
   <div>Category: <%= form.select :category, ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'] %></div>
   <div>City: <%= form.select :city, ['New York', 'San Francisco'] %></div>
   <div>User: <%= form.select :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %></div>
+  <%= label_tag(:photo, "Upload Photo") %>
+  <%= file_field_tag(:photo) %>
   <div><%= form.submit "Add Listing" %></div>
-<% end %>
+<% end %>-->
