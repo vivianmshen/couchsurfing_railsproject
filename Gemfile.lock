@@ -143,11 +143,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
-<<<<<<< HEAD
   figaro
-=======
   flatui-rails
->>>>>>> 944fa6cd2b28edca0dc67fd5798861e995a5c39b
   jbuilder (~> 1.2)
   jquery-rails
   omniauth
