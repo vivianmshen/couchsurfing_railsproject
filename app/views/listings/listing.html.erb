@@ -1,5 +1,6 @@
-<h3><%= @listing.name %><%=@lala%><%=@listing.photo%></h3>
-
+<h1><%= @listing.name %></h1>
+<h3><%= @listing.description %></h3>
+<h4><%=@listing.photo%></h4>
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" width="400">
 
 <h3><%= link_to "upload", :controller => 'listings', :action => 'photo', :id => params[:id]%></h3>
