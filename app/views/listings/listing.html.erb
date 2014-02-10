@@ -14,6 +14,8 @@ Contact</a>
 <h5>Average Rating: <%= @average %></h5>
 
 <% @reviews.each do |r| %>
-	<h4><%= r.title %></h4>
-	<h5><%= r.description %></h4>
+	<div class="panel panel-primary">
+		<div class="panel-heading"><%= r.title %></div>
+		<div class="panel-body"><%= r.description %></div>
+	</div>
 <% end %>
