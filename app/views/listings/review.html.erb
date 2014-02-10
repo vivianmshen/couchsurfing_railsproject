@@ -4,14 +4,34 @@
   <p><%= flash[:notice] %></p><br/>
 <% end %>
 
-<%= form_tag("/listings/post_review", :method => "post", :multipart => true) do %>
-  <div><%= label_tag(:title, "Title") %>
-  <%= text_field_tag(:title) %></div>
-  <div><%= label_tag(:rating, "Rating") %>
-  <%= select_tag :rating, options_for_select(['1', '2', '3', '4', '5']) %></div>
-  <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %>
-  <div><%= label_tag(:description, "Description") %>
-  <%= text_area_tag(:description) %>
+<%= form_tag("/listings/post_review", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+  <fieldset>
+  <legend>New Review</legend>
+  <div class="form-group">
+    <%= label_tag(:title, "Review Title", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:title, nil, :class => "form-control input-md", :placeholder => "e.g. Great experience!") %></div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:rating, "Rating", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :rating, options_for_select(['1', '2', '3', '4', '5']), :id => "selectbasic", :class => "form-control"%></div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:user_id, "User Doing the Rating", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1), :id => "selectbasic", :class => "form-control"%></div>
+  </div>
+  
+  <div class="form-group">
+    <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
+  </div>
   <%= hidden_field_tag(:listing, params[:id]) %>
-  <%= submit_tag("Submit") %>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton"></label>
+    <div class="col-md-4">
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton") %>
+    </div>
+  </div>
+
+</fieldset>
 <% end %>
+

@@ -1,7 +1,19 @@
-<h1><strong>Dashboard</strong></h1>
+<h1><strong><%= current_user.name %>'s Dashboard</strong></h1>
 
-<%= link_to "Inbox", :controller => 'user', :action => 'inbox'%>
-<%= link_to "Profile", :controller => 'user', :action => 'profile'%>
-<%= link_to "My Listings", :controller => 'user', :action => 'listings'%>
-
-<%= current_user.name %>
+<ul class="nav nav-tabs">
+	<li>
+		<%= link_to :controller => 'user', :action => 'inbox' do %>
+			<h4><span class="glyphicon glyphicon-envelope"></span> Inbox</h4>
+		<% end %>
+	</li>
+	<li>
+		<%= link_to :controller => 'user', :action => 'profile' do %>
+			<h4><span class="glyphicon glyphicon-user"></span> Profile</h4>
+		<% end %>
+	</li>
+	<li>
+		<%= link_to :controller => 'user', :action => 'listings' do %>
+			<h4><span class="glyphicon glyphicon-list-alt"></span> My Listings</h4>
+		<% end %>
+	</li>
+</ul>

@@ -1,16 +1,27 @@
-<h1><strong>Dashboard</strong></h1>
-
-<%= link_to "Inbox", :controller => 'user', :action => 'inbox'%>
-<%= link_to "Profile", :controller => 'user', :action => 'profile'%>
-<%= link_to "My Listings", :controller => 'user', :action => 'listings'%>
-
-<br><%= current_user.name %>
+<%= render "dashboard" %>
 
 <% if @listings.length == 0 %>
-	<br>You don't have any listings yet! <%= link_to "Create Listing", "/listings/create" %> 
+	<h4>No Listings</h4>
+	<p>You don't have any listings yet! <%= link_to "Create a listing now!", "/listings/create" %></p>
 <% else %>
-	<br>
+
 	<% @listings.each do |l| %>
-		<h3><%= l.name %></h3><%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%>
+		<div class="listings">
+			<h2>All Listings for <%= @current_user.name%></h2>
+			<table class="four">
+			  <tr class="four">
+			  	<% @listings.each do |l| %>
+					  <td><div class="tdfour">
+					  	<%= link_to  :controller => 'listings', :action => 'listing', :id => l.id do %>
+						  	<%= image_tag("", :alt =>"picture", :class =>"four imagebtn") %>
+						  	<h3><%= l.name %></h3>
+					  	<% end %>
+					  <p><%= l.description %></p>
+						<p><%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%></p></div></td>
+					<% end %>
+						<td><div class="tdfour"></div></td>
+			  </tr>
+			</table>
+		</div>
 	<% end %>
 <% end %>
