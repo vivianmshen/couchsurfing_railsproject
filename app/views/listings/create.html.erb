@@ -12,7 +12,6 @@
   <div><%= label_tag(:category, "Category") %>
   <%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']) %></div>
   <%= select_tag :city, options_for_select(['New York', 'San Francisco']) %></div>
-  <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %>
   <div><%= label_tag(:photo, "Upload Photo") %>
   <%= file_field_tag(:photo) %></div>
   

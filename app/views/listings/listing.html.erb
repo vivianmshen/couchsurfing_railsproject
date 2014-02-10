@@ -1,8 +1,14 @@
 <h1><%= @listing.name %></h1>
 <h4><%= link_to @listing.user.name, :controller => 'listings', :action => 'user', :id => @listing.user%></h4>
+
 <h3><%= @listing.description %></h3>
+<h4><%= @listing.photo%></h4>
 
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" width="400">
+
+<%= User.find(@user) %>
+<h3><a href="mailto:<%= @email %>?Subject=Hello" target="_top">
+Contact <%= @listing.user.name %></a></h3>
 
 <h3><%= link_to "Write a Review", :controller => 'listings', :action => 'review', :id => params[:id]%></h3>
 
