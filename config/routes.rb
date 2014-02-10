@@ -7,6 +7,8 @@ Friendswap::Application.routes.draw do
   match "/auth/failure", :to => redirect('/'), via: [:get, :post]
   match "signout", to: "sessions#destroy", as: 'signout', via: [:get, :post]
 
+  get "user/login"
+
   get "listings/newyork"
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
@@ -19,6 +21,11 @@ Friendswap::Application.routes.draw do
   post "listings/post_photo" 
   #get "listings/review/:id" => "listings#review"
   post "listings/post_review" 
+
+  get "user/dashboard" => "user#dashboard"
+  get "user/dashboard/profile" => "user#profile"
+  get "user/dashboard/inbox" => "user#inbox"
+  get "user/dashboard/listings" => "user#listings"
 
   #get "listings/newyork/:id/city=:city" => "listings#category"
   #get "listings/sanfrancisco/:id/city=:city" => "listings#category"

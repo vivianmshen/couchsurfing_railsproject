@@ -14,17 +14,21 @@ class ListingsController < ApplicationController
   end
 
   def city
-    if params[:city] == "sf"
-      @city = "San Francisco"
-    elsif params[:city] == "ny"
-      @city = "New York"
-    end
-    @listings = Listing.find_all_by_city(@city)
-    @categories ||= Array.new
-    @listings.each do |l|
-      if(!@categories.include?(l.category))
-        @categories.push(l.category)
+    if !session[:user_id].nil?
+      if params[:city] == "sf"
+        @city = "San Francisco"
+      elsif params[:city] == "ny"
+        @city = "New York"
       end
+      @listings = Listing.find_all_by_city(@city)
+      @categories ||= Array.new
+      @listings.each do |l|
+        if(!@categories.include?(l.category))
+          @categories.push(l.category)
+        end
+      end
+    else
+      redirect_to :controller => :user, :action => :login
     end
   end
 
@@ -78,7 +82,8 @@ class ListingsController < ApplicationController
       @listing.photo = picture.original_filename
       @listing.save()
       flash[:notice] = "Listing added successfully."
-      redirect_to :action => :create
+      params[:id] = @listing.id
+      redirect_to :action => :listing, :id => @listing.id 
     end
   end
 

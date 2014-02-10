@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210050004) do
+ActiveRecord::Schema.define(version: 20140209070038) do
 
   create_table "listings", force: true do |t|
     t.string   "name"
@@ -25,12 +25,14 @@ ActiveRecord::Schema.define(version: 20140210050004) do
   end
 
   create_table "reviews", force: true do |t|
-    t.integer "listing"
-    t.string  "title"
-    t.string  "name"
-    t.integer "user_id"
-    t.decimal "rating"
-    t.text    "description"
+    t.string   "title"
+    t.string   "name"
+    t.integer  "user_id"
+    t.decimal  "rating"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "listing"
   end
 
   create_table "users", force: true do |t|
