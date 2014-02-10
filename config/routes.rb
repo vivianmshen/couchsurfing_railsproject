@@ -22,6 +22,11 @@ Friendswap::Application.routes.draw do
   #get "listings/review/:id" => "listings#review"
   post "listings/post_review" 
 
+  get "user/dashboard" => "user#dashboard"
+  get "user/dashboard/profile" => "user#profile"
+  get "user/dashboard/inbox" => "user#inbox"
+  get "user/dashboard/listings" => "user#listings"
+
   #get "listings/newyork/:id/city=:city" => "listings#category"
   #get "listings/sanfrancisco/:id/city=:city" => "listings#category"
   #get 'listings/newyork/:id' => 'listings#newyork#category'

@@ -1,0 +1,16 @@
+<h1><strong>Dashboard</strong></h1>
+
+<%= link_to "Inbox", :controller => 'user', :action => 'inbox'%>
+<%= link_to "Profile", :controller => 'user', :action => 'profile'%>
+<%= link_to "My Listings", :controller => 'user', :action => 'listings'%>
+
+<br><%= current_user.name %>
+
+<% if @listings.length == 0 %>
+	<br>You don't have any listings yet! <%= link_to "Create Listing", "/listings/create" %> 
+<% else %>
+	<br>
+	<% @listings.each do |l| %>
+		<h3><%= l.name %></h3>
+	<% end %>
+<% end %>
