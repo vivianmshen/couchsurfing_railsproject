@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
 
   def listing
     @listing = Listing.find(params[:id])
+    @reviews = Review.find_all_by_listing(params[:id])
   end
 
   def city
@@ -19,7 +20,12 @@ class ListingsController < ApplicationController
       @city = "New York"
     end
     @listings = Listing.find_all_by_city(@city)
-    @categories = Listing.find_all_by_city(@city)
+    @categories ||= Array.new
+    @listings.each do |l|
+      if(!@categories.include?(l.category))
+        @categories.push(l.category)
+      end
+    end
   end
 
   def category
@@ -31,34 +37,24 @@ class ListingsController < ApplicationController
     @listings = Listing.find_all_by_city(@city)
   end
 
-  def photo
-    @city = "sf"
+  def review
+    @users = User.all
+    @review = Review.new
   end
 
-  def post_photo
-    picture = params[:photo]
-    if picture == nil
-      flash[:notice] = "Please enter a valid photo name."
-      redirect_to :action => :photo
-    else
-      file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
-      file.write(picture.read)
-      #Listing.new = Listing.find(params[:id])
-      redirect_to :action => :listing, :id => params[:id]
-    end
+  def post_review
+    @review = Review.new
+    @review.title = "asdf"
+    @review.description = params[:description]
+    @review.name = params[:name]
+    @review.user_id = User.find(params[:user_id])
+    @review.rating = params[:rating]
+    @review.listing = params[:listing]
+    @review.save()
+    flash[:notice] = "Review added successfully."
+    redirect_to :action => :listing, :id => params[:listing]
+   
   end
-
-  #def sanfrancisco
-  #  @listings = Listing.find_all_by_city('San Francisco')
-  #  @categories = Listing.find_all_by_city('San Francisco')
-  #  $city = "sf"
-  #end
-
-  #def newyork
-  #  @listings = Listing.find_all_by_city('New York')
-  #  @categories = Listing.find_all_by_city('New York')
-  #  $city = "ny"
-  #end
 
   def create
     @listing = Listing.new

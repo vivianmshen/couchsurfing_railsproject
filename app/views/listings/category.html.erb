@@ -2,7 +2,7 @@
 <% @listings.each do |l| %>
   <% if l.category == params[:id] %>
 	<h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
-  	<h3><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h3>
+  	<h4><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h4>
   	<%= l.description %>
   <% end %>
 <% end %>

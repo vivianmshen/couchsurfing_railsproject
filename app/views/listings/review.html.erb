@@ -1,0 +1,17 @@
+<h1>Write a Review<%= params[:id]%></h1> 
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p><br/>
+<% end %>
+
+<%= form_tag("/listings/post_review", :method => "post", :multipart => true) do %>
+  <div><%= label_tag(:title, "Title") %>
+  <%= text_field_tag(:title) %></div>
+  <div><%= label_tag(:rating, "Rating") %>
+  <%= select_tag :rating, options_for_select(['1', '2', '3', '4', '5']) %></div>
+  <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %>
+  <div><%= label_tag(:description, "Description") %>
+  <%= text_area_tag(:description) %>
+  <%= hidden_field_tag(:listing, params[:id]) %>
+  <%= submit_tag("Submit") %>
+<% end %>

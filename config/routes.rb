@@ -6,13 +6,14 @@ Friendswap::Application.routes.draw do
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
-  get 'listings/listing/:id/photo' => 'listings#photo'
+  get 'listings/listing/:id/review' => 'listings#review'
   
   get "listings/:city" => "listings#city"
   get "listings/:city/:id" => "listings#category"
 
   post "listings/post_photo" 
-  #get "listings/photo/:id" => "listings#photo"
+  #get "listings/review/:id" => "listings#review"
+  post "listings/post_review" 
 
   #get "listings/newyork/:id/city=:city" => "listings#category"
   #get "listings/sanfrancisco/:id/city=:city" => "listings#category"
