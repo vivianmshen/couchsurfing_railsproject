@@ -61,8 +61,14 @@ class ListingsController < ApplicationController
   #end
 
   def create
-    @listing = Listing.new
-    @users = User.all
+    if session[:user_id].nil?
+      @listing = Listing.new
+      @users = User.all
+    else
+      flash[:notice] = "Please login before adding comments."
+      #link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" 
+      redirect_to "/auth/facebook"
+    end
   end
   
   def post_create
@@ -82,7 +88,8 @@ class ListingsController < ApplicationController
       @listing.photo = picture.original_filename
       @listing.save()
       flash[:notice] = "Listing added successfully."
-      redirect_to :action => :create
+      params[:id] = @listing.id
+      redirect_to :action => :listing
     end
   end
 
