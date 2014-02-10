@@ -1,6 +1,7 @@
 <%= render "dashboard" %>
 
-<h4><%= current_user.name %></h4>
+<h4><%= current_user.name %></h4> 
 <p><%= current_user.photo %></p>
 <p><%= current_user.email %></p>
-<p>More user profile information to come.</p>
+<p><%= current_user.bio %></p>
+<%= link_to "Edit", :controller => 'user', :action => 'edit'%>

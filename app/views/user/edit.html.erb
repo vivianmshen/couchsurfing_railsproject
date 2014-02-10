@@ -1,0 +1,12 @@
+<%= render "dashboard" %>
+
+<%= form_tag("/user/update", :method => "get", :multipart => true) do %>
+  <div><%= label_tag(:email, "Email") %>
+  <%= text_field_tag(:email, value = @current_user.email) %></div>
+  <div><%= label_tag(:bio, "Bio") %>
+  <%= text_area_tag(:bio, value = @current_user.bio) %>
+  <div><%= label_tag(:photo, "Change Photo (Not uploading will leave the photo the same)" )%>
+  <%= file_field_tag(:photo) %></div>
+  <%= hidden_field_tag(:listing, params[:listing]) %>
+  <%= submit_tag("Submit") %>
+<% end %>

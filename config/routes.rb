@@ -5,6 +5,8 @@ Friendswap::Application.routes.draw do
   get "listings/delete"
   get "listings/edit"
   get "listings/update"
+  get "user/edit"
+  get "user/delete"
   post "listings/post_create"
 
   match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
