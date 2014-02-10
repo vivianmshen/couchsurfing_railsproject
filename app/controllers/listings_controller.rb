@@ -13,7 +13,7 @@ class ListingsController < ApplicationController
     @user = @listing.user
     @email = @user.email
     @reviews = Review.find_all_by_listing(params[:id])
-    if @reviews == nil
+    if @reviews.length == 0 
       @average = 0
     else
       @sum = 0
