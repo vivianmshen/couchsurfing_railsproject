@@ -14,17 +14,21 @@ class ListingsController < ApplicationController
   end
 
   def city
-    if params[:city] == "sf"
-      @city = "San Francisco"
-    elsif params[:city] == "ny"
-      @city = "New York"
-    end
-    @listings = Listing.find_all_by_city(@city)
-    @categories ||= Array.new
-    @listings.each do |l|
-      if(!@categories.include?(l.category))
-        @categories.push(l.category)
+    if !session[:user_id].nil?
+      if params[:city] == "sf"
+        @city = "San Francisco"
+      elsif params[:city] == "ny"
+        @city = "New York"
       end
+      @listings = Listing.find_all_by_city(@city)
+      @categories ||= Array.new
+      @listings.each do |l|
+        if(!@categories.include?(l.category))
+          @categories.push(l.category)
+        end
+      end
+    else
+      redirect_to :controller => :user, :action => :login
     end
   end
 
@@ -57,14 +61,8 @@ class ListingsController < ApplicationController
   end
 
   def create
-    if session[:user_id].nil?
-      @listing = Listing.new
-      @users = User.all
-    else
-      flash[:notice] = "Please login before adding comments."
-      #link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" 
-      redirect_to "/auth/facebook"
-    end
+    @listing = Listing.new
+    @users = User.all
   end
   
   def post_create
