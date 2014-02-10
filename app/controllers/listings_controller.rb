@@ -60,6 +60,11 @@ class ListingsController < ApplicationController
    
   end
 
+  def delete
+    Listing.find(params[:listing]).destroy
+    redirect_to :controller => :user, :action => listings
+  end
+
   def create
     @listing = Listing.new
     @users = User.all
