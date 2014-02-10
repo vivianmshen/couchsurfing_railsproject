@@ -1,8 +1,19 @@
+<div class="listings">
 <h2>All <%= params[:id] %> Listings for <%= @city %></h2>
-<% @listings.each do |l| %>
-  <% if l.category == params[:id] %>
-	<h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
-  	<h4><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h4>
-  	<%= l.description %>
-  <% end %>
-<% end %>
+	<table class="four">
+	  <tr class="four">
+	  	<% @listings.each do |l| %>
+	  	  <% if l.category == params[:id] %>
+				  <td><div class="tdfour">
+				  	<%= link_to  :controller => 'listings', :action => 'listing', :id => l.id do %>
+					  	<%= image_tag("", :alt =>"picture", :class =>"four imagebtn") %>
+					  	<h3><%= l.name %></h3>
+					  	<h4><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h4>
+				  	<% end %>
+				  <%= l.description %></div></td>
+			  <% end %>
+			<% end %>
+				<td><div class="tdfour"></div></td>
+	  </tr>
+	</table>
+</div>

@@ -1,0 +1,111 @@
+body {
+	padding-top: 50px;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+#header {
+	font-size: 16px;
+}
+
+.navbar {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+#footer {
+}
+
+.navbar-static-top {
+	margin-bottom: 0px;
+}
+
+#main {
+}
+
+.jumbotron {
+	background-image: url('../images/home.jpg');
+	background-size: cover;
+	height: 500px;
+	text-align: center;
+	width: 100%;
+	padding-top: 300px;
+	margin: 0px;
+}
+
+.jumbotronpan {
+	height: 400px;
+}
+
+.jumbotron h1 {
+	color: white;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+}
+
+.jumbotron h2 {
+	color: white;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+}
+
+.places {
+	background: #AAAAFF;
+	padding: 10px 50px 20px 50px;
+}
+
+.listings {
+	padding: 10px 50px 20px 50px;
+}
+
+table.four{
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+
+tr.c {
+	vertical-align: top;
+}
+
+tr.four {
+	height: 300px;
+	vertical-align: top;
+}
+
+.tdfour{
+	width: 300px;
+}
+
+img.four {
+	height: 200px;
+	margin: 5px;
+	width: 300px;
+}
+
+.imagebtn {
+	position: relative;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+	width: 100%;
+	-webkit-box-shadow: 3px 3px 3px #7C7C7C;
+  box-shadow: 3px 3px 3px #7C7C7C;
+}
+
+.imagebtn:hover {
+	top: 2px;
+	left: 2px;
+}
+
+.caption {
+	color: white;
+	position: absolute;
+	top: 130px;
+	width: 100%;
+}
+
+a:hover {
+	text-decoration: none;
+}

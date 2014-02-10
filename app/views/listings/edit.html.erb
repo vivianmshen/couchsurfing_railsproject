@@ -1,0 +1,19 @@
+<h1>Edit your listing</h1>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p><br/>
+<% end %>
+
+<%= form_tag("/listings/update", :method => "get", :multipart => true) do %>
+  <div><%= label_tag(:name, "Name") %>
+  <%= text_field_tag(:name, value = @listing.name) %></div>
+  <div><%= label_tag(:description, "Description") %>
+  <%= text_area_tag(:description, value = @listing.description) %>
+  <div><%= label_tag(:category, "Category") %>
+  <%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'], @listing.category) %></div>
+  <%= select_tag :city, options_for_select(['New York', 'San Francisco'], @listing.city) %></div>
+  <div><%= label_tag(:photo, "Change Photo (Not uploading will leave the photo the same") %>
+  <%= file_field_tag(:photo) %></div>
+  <%= hidden_field_tag(:listing, params[:listing]) %>
+  <%= submit_tag("Submit") %>
+<% end %>

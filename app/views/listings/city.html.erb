@@ -1,13 +1,37 @@
-<h1><%= @city %></h1>
-
-<% @categories.each do |c| %>
-	<h3><%= link_to c, :controller => 'listings', :action => 'category', :id => c, :city => params[:city]%></h3>
-
-  <!--<h3><%= c %></h3>-->
+<%= content_tag :div, :class => "jumbotron jumbotronpan", :style => "background-image: url(\'../images/".html_safe + params[:city] + "_pan.jpg\');".html_safe do %>
+	<h2>Find fun activities in <%= @city %></h2>
 <% end %>
 
-<h2>All Listings for </h2>
-<% @listings.each do |l| %>
-  <h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
-  <%= l.description %>
-<% end %>
+<div class="places">
+	<table class="four">
+	  <tr class="c">
+			<% @categories.each do |c| %>
+				<td><div class="tdfour">
+					<%= link_to :controller => 'listings', :action => 'category', :id => c, :city => params[:city] do %>
+						<div class="imagebtn">
+							<%= image_tag(c + ".jpg", :alt => c, :class =>"four") %>
+							<%= content_tag :h2, :class => "caption" do %><%= c %><% end %>
+						</div>
+					<% end %></td>
+			<% end %>
+				<td><div class="tdfour"></div></td>
+	  </tr>
+	</table>
+</div>
+
+<div class="listings">
+<h2>All Listings for <%= @city %></h2>
+	<table class="four">
+	  <tr class="four">
+	  	<% @listings.each do |l| %>
+			  <td><div class="tdfour">
+			  	<%= link_to  :controller => 'listings', :action => 'listing', :id => l.id do %>
+				  	<%= image_tag("", :alt =>"picture", :class =>"four imagebtn") %>
+				  	<h3><%= l.name %></h3>
+			  	<% end %>
+			  <%= l.description %></div></td>
+			<% end %>
+				<td><div class="tdfour"></div></td>
+	  </tr>
+	</table>
+</div>
