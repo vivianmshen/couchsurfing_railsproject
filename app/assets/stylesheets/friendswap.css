@@ -17,6 +17,13 @@ body {
 	padding-right: 5%;
 }
 
+#footer {
+}
+
+.navbar-static-top {
+	margin-bottom: 0px;
+}
+
 #main {
 }
 
@@ -30,14 +37,27 @@ body {
 	margin: 0px;
 }
 
+.jumbotronpan {
+	height: 400px;
+}
+
 .jumbotron h1 {
 	color: white;
 	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
 }
 
-#places {
+.jumbotron h2 {
+	color: white;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+}
+
+.places {
 	background: #AAAAFF;
-	padding: 10px 100px 20px 100px;
+	padding: 10px 50px 20px 50px;
+}
+
+.listings {
+	padding: 10px 50px 20px 50px;
 }
 
 table.four{
@@ -48,12 +68,11 @@ table.four{
 }
 
 tr.c {
-	height: 300px;
 	vertical-align: top;
 }
 
 tr.four {
-	height: 400px;
+	height: 300px;
 	vertical-align: top;
 }
 
@@ -67,9 +86,26 @@ img.four {
 	width: 300px;
 }
 
-#footer {
+.imagebtn {
+	position: relative;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+	width: 100%;
+	-webkit-box-shadow: 3px 3px 3px #7C7C7C;
+  box-shadow: 3px 3px 3px #7C7C7C;
 }
 
-.navbar-static-top {
-	margin-bottom: 0px;
+.imagebtn:hover {
+	top: 2px;
+	left: 2px;
+}
+
+.caption {
+	color: white;
+	position: absolute;
+	top: 130px;
+	width: 100%;
+}
+
+a:hover {
+	text-decoration: none;
 }
