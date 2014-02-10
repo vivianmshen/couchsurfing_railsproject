@@ -1,13 +1,21 @@
 <h1><%= @city %></h1>
 
-<% @categories.each do |c| %>
-	<h3><%= link_to c, :controller => 'listings', :action => 'category', :id => c, :city => params[:city]%></h3>
+<table class="four">
+  <tr class="c">
+		<% @categories.each do |c| %>
+			<td><div class="tdfour"><h3><%= link_to image_tag(c + ".jpg", :alt => c, :class =>"four") + c, :controller => 'listings', :action => 'category', :id => c, :city => params[:city]%></h3>
+		<% end %>
+			<td><div class="tdfour"></div></td>
+  </tr>
+</table>
 
-  <!--<h3><%= c %></h3>-->
-<% end %>
-
-<h2>All Listings for </h2>
-<% @listings.each do |l| %>
-  <h3><%= link_to l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
-  <%= l.description %>
-<% end %>
+<h2>All Listings for <%= @city %></h2>
+<table class="four">
+  <tr class="four">
+  	<% @listings.each do |l| %>
+		  <td><div class="tdfour"><h3><%= link_to image_tag("", :alt =>"picture", :class =>"four") + l.name, :controller => 'listings', :action => 'listing', :id => l.id%></h3>
+		  <%= l.description %></div></td>
+		<% end %>
+			<td><div class="tdfour"></div></td>
+  </tr>
+</table>

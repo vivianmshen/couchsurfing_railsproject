@@ -40,14 +40,28 @@ body {
 	padding: 10px 100px 20px 100px;
 }
 
-table.places{
+table.four{
 	table-layout: fixed;
 	text-align: center;
 	vertical-align: middle;
 	width: 100%;
 }
 
-img.city {
+tr.c {
+	height: 300px;
+	vertical-align: top;
+}
+
+tr.four {
+	height: 400px;
+	vertical-align: top;
+}
+
+.tdfour{
+	width: 300px;
+}
+
+img.four {
 	height: 200px;
 	margin: 5px;
 	width: 300px;
