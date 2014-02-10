@@ -1,3 +1,7 @@
+body {
+	padding-top: 50px;
+}
+
 #container {
 	margin-left: auto;
 	margin-right: auto;
@@ -5,17 +9,53 @@
 }
 
 #header {
-	font-size: 20px;
+	font-size: 16px;
+}
+
+.navbar {
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 #main {
+}
 
+.jumbotron {
+	background-image: url('../images/home.jpg');
+	background-size: cover;
+	height: 500px;
+	text-align: center;
+	width: 100%;
+	padding-top: 300px;
+	margin: 0px;
+}
+
+.jumbotron h1 {
+	color: white;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+}
+
+#places {
+	background: #AAAAFF;
+	padding: 10px 100px 20px 100px;
+}
+
+table.places{
+	table-layout: fixed;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+}
+
+img.city {
+	height: 200px;
+	margin: 5px;
+	width: 300px;
 }
 
 #footer {
-
 }
 
-.right {
-	float: right;
+.navbar-static-top {
+	margin-bottom: 0px;
 }

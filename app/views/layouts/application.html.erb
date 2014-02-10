@@ -9,7 +9,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -19,14 +19,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <%= link_to image_tag("logo.jpg", :alt => "friendswap"), {:action => 'index', :controller => 'listings'}, :class =>"navbar-brand" %>
+              <%= link_to image_tag("logo.png", :alt => "friendswap"), {:action => 'index', :controller => 'listings'}, :class =>"navbar-brand" %>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
-                  <li><p class="navbar-text">Welcome <strong><%= current_user.name %></strong>!</p></li>
+                  <li><p class="navbar-text">Welcome, <strong><%= current_user.name %></strong>!</p></li>
                   <li><%= link_to "Explore", :controller => 'listings', :action => 'index'%></li>
                   <li><%= link_to "Dashboard", :controller => 'user', :action => 'dashboard'%></li>
                   <li><%= link_to "Create Listing", "/listings/create" %></li>
@@ -42,10 +41,18 @@
       <div id="main">
         <%= yield %>
       </div>
-      <div id="footer">
-        <%= link_to "About Friendswap", "#" %>
-        <%= link_to "Customer Service", "#" %>
-      </div>
+    </div>
+    <div id="footer">
+      <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "About Friendswap", "#" %></li>
+              <li><%= link_to "Customer Service", "#" %></li>
+            </ul>
+          </div>
+       </div>
+      </nav>
     </div>
   </body>
 </html>

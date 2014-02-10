@@ -1,19 +1,28 @@
 <div class="jumbotron">
-	<%= image_tag("home.jpg", :alt => "friendswap") %>
 	<h1>Live like a local.</h1>
-	<p><a class="btn btn-primary btn-lg" role="button">Choose a place</a></p>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-lg btn-success dropdown-toggle" data-toggle="dropdown">
+	    Choose a place <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><%= link_to 'San Francisco', :controller => 'listings', :action => 'city', :city => 'sf'%></li>
+	    <li><%= link_to 'New York', :controller => 'listings', :action => 'city', :city => 'ny'%></li>
+	  </ul>
+	</div>
 </div>
 
-<h3>Hangout in these cities:</h3>
+<div id="places">
+	<h2>Explore places</h2>
+	<table class="home">
+    <tr>
+      <td><%= link_to image_tag("sf.jpg", :alt => "sf", :class => "city"), :controller => 'listings', :action => 'city', :city => 'sf'%></td>
+      <td><%= link_to image_tag("ny.jpg", :alt => "ny", :class => "city"), :controller => 'listings', :action => 'city', :city => 'ny'%></td>
+    </tr>
+  </table>
+</div>
 
 <!-- to list individual users
 <% @users.each do |user| %>
   	<h3><%= link_to user.name, :controller => 'listings', :action => 'user', :id => user.id%></h3>
 <% end %>
 -->
-
-<h2><%= link_to 'San Francisco', :controller => 'listings', :action => 'city', :city => 'sf'%></h2>
-<h2><%= link_to 'New York', :controller => 'listings', :action => 'city', :city => 'ny'%></h2>
-
-
-
