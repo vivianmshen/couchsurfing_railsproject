@@ -16,11 +16,6 @@
     <div class="col-md-4"><%= select_tag :rating, options_for_select(['1', '2', '3', '4', '5']), :id => "selectbasic", :class => "form-control"%></div>
   </div>
   <div class="form-group">
-    <%= label_tag(:user_id, "User Doing the Rating", :class => "col-md-4 control-label", :for => "selectbasic") %>
-    <div class="col-md-4"><%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'name', 1), :id => "selectbasic", :class => "form-control"%></div>
-  </div>
-  
-  <div class="form-group">
     <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>

@@ -64,7 +64,8 @@ class ListingsController < ApplicationController
     @review.title = params[:title]
     @review.description = params[:description]
     @review.name = params[:name]
-    @review.user_id = User.find(params[:user_id])
+    #@review.user_id = User.find(params[:user_id])
+    @review.user_id = User.find(session[:user_id]).id
     @review.rating = params[:rating]
     @review.listing = params[:listing]
     @review.save()
