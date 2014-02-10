@@ -5,10 +5,10 @@
 
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" class="four imagebtn">
 
-<h3><a href="mailto:<%= @email %>?Subject=Hello" target="_top">
-Contact <%= @listing.user.name %></a></h3>
+<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">
+Contact</a>
 
-<h3><%= link_to "Write a Review", :controller => 'listings', :action => 'review', :id => params[:id]%></h3>
+<a class = "btn btn-primary" href="<%= params[:id] %>/review">Review</a>
 
 <% @reviews.each do |r| %>
 	<h4><%= r.title %></h4>
