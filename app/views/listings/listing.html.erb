@@ -1,5 +1,11 @@
+
 <h3><%= @listing.name %></h3>
 <h4><%= link_to @listing.user.name, :controller => 'listings', :action => 'user', :id => @listing.user%></h4>
+
+
+<h1><%= @listing.name %></h1>
+<h3><%= @listing.description %></h3>
+<h4><%=@listing.photo%></h4>
 
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" width="400">
 

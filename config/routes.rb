@@ -2,6 +2,11 @@ Friendswap::Application.routes.draw do
   get "listings/index"
   get "listings/create"
   post "listings/post_create"
+
+  match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
+  match "/auth/failure", :to => redirect('/'), via: [:get, :post]
+  match "signout", to: "sessions#destroy", as: 'signout', via: [:get, :post]
+
   get "listings/newyork"
   get "listings/sanfrancisco"
   get 'listings/user/:id' => 'listings#user'
