@@ -1,6 +1,19 @@
+
+<h3><%= @listing.name %></h3>
+<h4><%= link_to @listing.user.name, :controller => 'listings', :action => 'user', :id => @listing.user%></h4>
+
+
 <h1><%= @listing.name %></h1>
 <h3><%= @listing.description %></h3>
 <h4><%=@listing.photo%></h4>
+
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" width="400">
 
-<h3><%= link_to "upload", :controller => 'listings', :action => 'photo', :id => params[:id]%></h3>
+<h3><%= link_to "Write a Review", :controller => 'listings', :action => 'review', :id => params[:id]%></h3>
+
+<h4><%= @listing.description %></h4>
+
+<% @reviews.each do |r| %>
+	<h4><%= r.title %></h4>
+	<h5><%= r.description %></h4>
+<% end %>
