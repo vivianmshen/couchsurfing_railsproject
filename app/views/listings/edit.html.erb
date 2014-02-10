@@ -4,16 +4,30 @@
   <p><%= flash[:notice] %></p><br/>
 <% end %>
 
-<%= form_tag("/listings/update", :method => "get", :multipart => true) do %>
-  <div><%= label_tag(:name, "Name") %>
-  <%= text_field_tag(:name, value = @listing.name) %></div>
-  <div><%= label_tag(:description, "Description") %>
-  <%= text_area_tag(:description, value = @listing.description) %>
-  <div><%= label_tag(:category, "Category") %>
-  <%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'], @listing.category) %></div>
-  <%= select_tag :city, options_for_select(['New York', 'San Francisco'], @listing.city) %></div>
-  <div><%= label_tag(:photo, "Change Photo (Not uploading will leave the photo the same)" ) %>
-  <%= file_field_tag(:photo) %></div>
+<%= form_tag("/listings/update", :method => "get", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+  <fieldset>
+  <legend>Edit Listing</legend>
+  <div class="form-group"><%= label_tag(:name, "Name", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:name, @listing.name, :class => "form-control input-md") %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_area_tag(:description, @listing.description, :class => "form-control input-md") %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:category, "Category", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'], @listing.category), :class => "form-control" %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:city, "City", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :city, options_for_select(['New York', 'San Francisco'], @listing.city), :class => "form-control" %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:photo, "Change Photo", :class => "col-md-4 control-label", :for => "filebutton") %>
+    <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
+  </div>
   <%= hidden_field_tag(:listing, params[:listing]) %>
-  <%= submit_tag("Submit") %>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton"></label>
+    <div class="col-md-4">
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton") %>
+    </div>
+  </div>
+</fieldset>
 <% end %>

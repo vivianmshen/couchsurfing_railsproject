@@ -4,8 +4,6 @@
 	<h4>No Listings</h4>
 	<p>You don't have any listings yet! <%= link_to "Create a listing now!", "/listings/create" %></p>
 <% else %>
-
-	<% @listings.each do |l| %>
 		<div class="listings">
 			<%= link_to "Create New Listing", "/listings/create" %></p>
 			<h2>All Listings for <%= @current_user.name%></h2>
@@ -24,5 +22,4 @@
 			  </tr>
 			</table>
 		</div>
-	<% end %>
 <% end %>

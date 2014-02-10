@@ -1,12 +1,25 @@
 <%= render "dashboard" %>
 
-<%= form_tag("/user/update", :method => "get", :multipart => true) do %>
-  <div><%= label_tag(:email, "Email") %>
-  <%= text_field_tag(:email, value = @current_user.email) %></div>
-  <div><%= label_tag(:bio, "Bio") %>
-  <%= text_area_tag(:bio, value = @current_user.bio) %>
-  <div><%= label_tag(:photo, "Change Photo (Not uploading will leave the photo the same)" )%>
-  <%= file_field_tag(:photo) %></div>
+<%= form_tag("/user/update", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+	<fieldset>
+  <legend>Edit Your Information</legend>
+
+  <div class="form-group"><%= label_tag(:email, "Email", :class => "col-md-4 control-label", :for => "text-input") %>
+  	<div class="col-md-4"><%= text_field_tag(:email, value = @current_user.email, :class => "form-control input-md") %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:bio, "Bio", :class => "col-md-4 control-label", :for => "text-input") %>
+  	<div class="col-md-4"><%= text_area_tag(:bio, value = @current_user.bio, :class => "form-control input-md") %></div>
+  </div>
+  <div class="form-group"><%= label_tag(:photo, "Change Photo", :class => "col-md-4 control-label", :for => "filebutton" )%>
+  	<div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
+  </div>
   <%= hidden_field_tag(:listing, params[:listing]) %>
-  <%= submit_tag("Submit") %>
+  
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton"></label>
+    <div class="col-md-4">
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton") %>
+    </div>
+  </div>
+</fieldset>
 <% end %>
