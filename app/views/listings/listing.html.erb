@@ -4,11 +4,14 @@
 <h3><%= @listing.description %></h3>
 
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" class="four imagebtn">
-
+<br>
 <a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">
 Contact</a>
 
 <a class = "btn btn-primary" href="<%= params[:id] %>/review">Review</a>
+<br><br>
+<h4>Reviews</h4> 
+<h5>Average Rating: <%= @average %></h5>
 
 <% @reviews.each do |r| %>
 	<h4><%= r.title %></h4>
