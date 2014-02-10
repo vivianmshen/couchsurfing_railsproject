@@ -1,0 +1,24 @@
+#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+#header {
+	font-size: 20px;
+}
+
+#header_right {
+}
+
+#main {
+
+}
+
+#footer {
+
+}
+
+.right {
+	float: right;
+}
