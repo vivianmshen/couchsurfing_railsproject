@@ -10,6 +10,8 @@ class ListingsController < ApplicationController
 
   def listing
     @listing = Listing.find(params[:id])
+    @user = @listing.user
+    @email = @user.email
     @reviews = Review.find_all_by_listing(params[:id])
   end
 
@@ -78,12 +80,12 @@ class ListingsController < ApplicationController
       @listing.description = params[:description]
       @listing.city = params[:city]
       @listing.category =params[:category]
-      @listing.user = User.find(params[:user_id])
+      @listing.user = User.find(session[:user_id])
       @listing.photo = picture.original_filename
       @listing.save()
       flash[:notice] = "Listing added successfully."
-      params[:id] = @listing.id
-      redirect_to :action => :listing
+      listing_id = @listing.id
+      redirect_to :action => :listing, :id => listing_id
     end
   end
 
