@@ -1,7 +1,10 @@
 Friendswap::Application.routes.draw do
-  get "listings/index"
+  get "listings/index" 
+  #get "listings/index" => "listings#index"
   get "listings/create"
   get "listings/delete"
+  get "listings/edit"
+  get "listings/update"
   post "listings/post_create"
 
   match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
@@ -20,7 +23,6 @@ Friendswap::Application.routes.draw do
   get "listings/:city/:id" => "listings#category"
 
   post "listings/post_photo" 
-  #get "listings/review/:id" => "listings#review"
   post "listings/post_review" 
 
   get "user/dashboard" => "user#dashboard"

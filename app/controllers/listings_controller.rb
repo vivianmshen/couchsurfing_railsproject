@@ -64,7 +64,23 @@ class ListingsController < ApplicationController
 
   def delete
     Listing.find(params[:listing]).destroy
-    redirect_to :controller => :user, :action => listings
+    redirect_to :controller => :user, :action => :listings
+  end
+
+  def edit
+    @listing = Listing.find(params[:listing])
+  end
+
+  def update
+    @listing = Listing.find(params[:listing])
+    submission_hash = {"name" => params[:name],
+                       "description" => params[:description],
+                       "city" => params[:city],
+                       "category" => params[:category]}
+
+ 
+    @listing.update_attributes(submission_hash)
+    redirect_to :controller => :user, :action => :listings
   end
 
   def create

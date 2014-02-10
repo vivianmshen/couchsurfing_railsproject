@@ -10,7 +10,7 @@
   <div id="user-widget">
     <% if current_user %>
       Welcome <strong><%= current_user.name %></strong>!
-      <%= link_to "Explore", :controller => 'listings', :action => 'index'%> |
+      <%= link_to "Explore", :controller => "listings", :action => "index"%> |
       <%= link_to "Dashboard", :controller => 'user', :action => 'dashboard'%> |
       <%= link_to "Create Listing", "/listings/create" %> | 
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
