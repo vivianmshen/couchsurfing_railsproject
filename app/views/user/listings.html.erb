@@ -11,6 +11,6 @@
 <% else %>
 	<br>
 	<% @listings.each do |l| %>
-		<h3><%= l.name %></h3>
+		<h3><%= l.name %></h3><%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%>
 	<% end %>
 <% end %>
