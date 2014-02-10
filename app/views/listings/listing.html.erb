@@ -6,7 +6,6 @@
 
 <img src="<%=asset_path(@listing.photo)%>" alt="picture" width="400">
 
-<%= User.find(@user) %>
 <h3><a href="mailto:<%= @email %>?Subject=Hello" target="_top">
 Contact <%= @listing.user.name %></a></h3>
 
