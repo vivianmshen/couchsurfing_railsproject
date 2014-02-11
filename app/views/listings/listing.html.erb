@@ -1,20 +1,41 @@
-<h1><%= @listing.name %></h1>
-<h4><%= link_to @listing.user.name, :controller => 'listings', :action => 'user', :id => @listing.user%></h4>
+<div class="col-lg-12">
+	<div class="row">
+		<div class="col-md-7">
+			<div class="well well-lg">
+				<h1><%= @listing.name %></h1>
+				<h4><%= @listing.description %></h4>
+				<div class="event">
+					<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="event">
+				</div>
+			</div>
+			<div class="well well-lg">
+				<h1>Reviews</h1>
+				<h4>Average Rating: <%= @average %></h4> 
+				<a class="btn btn-primary" href="<%= params[:id] %>/review">Write a Review</a>
+				<br /><br />
+				<% @reviews.each do |r| %>
+					<div class="panel panel-info">
+						<div class="panel-heading"><%= r.title %><br />Rating: <%= r.rating %></div>
+						<div class="panel-body"><%= r.description %></div>
+					</div>
+				<% end %>
+			</div>
+		</div>
 
-<h3><%= @listing.description %></h3>
-
-<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="four imagebtn">
-<br>
-<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">
-Contact</a>
-<a class = "btn btn-primary" href="<%= params[:id] %>/review">Review</a>
-<br><br>
-<h4>Reviews</h4> 
-<h5>Average Rating: <%= @average %></h5>
-
-<% @reviews.each do |r| %>
-	<div class="panel panel-primary">
-		<div class="panel-heading"><%= r.title %></div>
-		<div class="panel-body"><%= r.description %></div>
+		<div class="col-md-5">
+			<div class="well well-lg">
+				<img align="center" src="http://yuilibrary.com/yui/docs/assets/calendar/calendar.png">
+				<center><p>Dates widget to come.</p></center>
+			</div>
+			<div class="well well-lg">
+				<div class="profile">
+					<img src="<%=asset_path(@listing.user.photo)%>" alt="<%=@listing.user.name%>" class="profile">
+				</div>
+				<center><h3><%= @listing.user.name %></h3>
+				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
+				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
+			</div>
+		</div>
 	</div>
-<% end %>
+</div>
+&nbsp;

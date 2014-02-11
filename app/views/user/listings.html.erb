@@ -4,8 +4,12 @@
 	<h4>No Listings</h4>
 	<p>You don't have any listings yet! <%= link_to "Create a listing now!", "/listings/create" %></p>
 <% else %>
+<%= link_to "/listings/create" do %>
+				<center><h4><span class="glyphicon glyphicon-plus"></span> Create New Listing</h4></center>
+			<% end %>
+<div class="well well-sm">
 		<div class="listings">
-			<%= link_to "Create New Listing", "/listings/create" %></p>
+			
 			<h2>All Listings for <%= @current_user.name%></h2>
 			<table class="four">
 				<% @listings.each_slice(4) do |slice| %>
@@ -17,10 +21,11 @@
 						  	<h3><%= l.name %></h3>
 					  	<% end %>
 						  <p><%= l.description %></p>
-							<p><%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%> | <%= link_to "Edit", :controller => 'listings', :action => 'edit', :listing => l.id%></p></div></td>
+							<p><%= link_to "Edit", :controller => 'listings', :action => 'edit', :listing => l.id%> | <%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%></p></div></td>
 						<% end %>
 					</tr>
 				<% end %>
 			</table>
 		</div>
+	</div>
 <% end %>

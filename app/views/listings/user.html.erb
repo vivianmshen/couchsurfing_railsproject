@@ -1,6 +1,7 @@
 <% if @user != nil %>
 	<h1><%= @user.name%></h1>
 	<p><%= @user.bio %></p>
+	<div class="well well-sm">
 	<div class="listings">
 		<h2>All Listings for <%= @user.name%></h2>
 		<table class="four">
@@ -19,6 +20,7 @@
 			<% end %>
 		</table>
 	</div>
+</div>
 <% else %>
 	<h1> asdfasdf</h1>
 <%end%>
