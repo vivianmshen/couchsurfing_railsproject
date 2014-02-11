@@ -3,19 +3,20 @@
 <% end %>
 
 <div class="places">
-	<table class="four">
-	  <tr class="c">
-			<% @categories.each do |c| %>
-				<td><div class="tdfour">
-					<%= link_to :controller => 'listings', :action => 'category', :id => c, :city => params[:city] do %>
-						<div class="imagebtn">
+<table class="four">
+		<% @categories.each_slice(4) do |slice| %>
+			<tr>
+				<% slice.each do |c| %>
+					<td><div class="tdfour">
+				  	<%= link_to :controller => 'listings', :action => 'category', :id => c, :city => params[:city] do %>
+				  	<div class="imagebtn">
 							<%= image_tag(c + ".jpg", :alt => c, :class =>"four") %>
 							<%= content_tag :h2, :class => "caption" do %><%= c %><% end %>
 						</div>
-					<% end %></td>
-			<% end %>
-				<td><div class="tdfour"></div></td>
-	  </tr>
+					<% end %></div></td>
+				<% end %>
+			</tr>
+	  <% end %>
 	</table>
 </div>
 
