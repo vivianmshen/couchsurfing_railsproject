@@ -16,6 +16,11 @@
 					  		<h4><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h4>
 					  <%= l.description %></div></td>
 					<% end %>
+					<% if @listings.count < 4 %>
+				  <% for x in 0...(4-@listings.count) do %>
+				  	<td><div class="tdfour">&nbsp;</div></td>
+				  <% end %>
+				<% end %>
 				</tr>
 			<% end %>
 		</table>

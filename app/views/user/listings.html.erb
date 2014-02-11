@@ -23,6 +23,11 @@
 						  <p><%= l.description %></p>
 							<p><%= link_to "Edit", :controller => 'listings', :action => 'edit', :listing => l.id%> | <%= link_to "Delete", :controller => 'listings', :action => 'delete', :listing => l.id%></p></div></td>
 						<% end %>
+						<% if @listings.count < 4 %>
+						  <% for x in 0...(4-@listings.count) do %>
+						  	<td><div class="tdfour">&nbsp;</div></td>
+						  <% end %>
+						<% end %>
 					</tr>
 				<% end %>
 			</table>

@@ -15,6 +15,11 @@
 						</div>
 					<% end %></div></td>
 				<% end %>
+				<% if @categories.count < 4 %>
+				  <% for x in 0...(4-@categories.count) do %>
+				  	<td><div class="tdfour">&nbsp;</div></td>
+				  <% end %>
+				<% end %>
 			</tr>
 	  <% end %>
 	</table>
@@ -29,15 +34,14 @@
 					<% slice.each do |l| %>
 						<td><div class="tdfour">
 					  	<%= link_to  :controller => 'listings', :action => 'listing', :id => l.id do %>
-						  	<%= image_tag(asset_path(l.photo), :alt => l.name, :class =>"four imagebtn img-responsive", :width =>"50%") %>
+						  	<%= image_tag(asset_path(l.photo), :alt => l.name, :class =>"four imagebtn img-responsive") %>
 						  	<h3><%= l.name %></h3>					  	
 					  	<% end %>
 						<%= l.description %></div></td>
 					<% end %>
 					<% if @listings.count < 4 %>
 				  	<% for x in 0...(4-@listings.count) do %>
-				  	got here
-				  	<td width="50%"><div class="tdfour">&nbsp;</div></td>
+				  	<td><div class="tdfour">&nbsp;</div></td>
 				  	<% end %>
 				  <% end %>
 				</tr>
