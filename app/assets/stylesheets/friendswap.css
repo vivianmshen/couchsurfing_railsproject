@@ -28,7 +28,6 @@ body {
 }
 
 .jumbotron {
-	background-image: url('../images/home.jpg');
 	background-size: cover;
 	height: 500px;
 	text-align: center;
