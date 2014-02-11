@@ -63,8 +63,13 @@ body {
 table.four{
 	table-layout: fixed;
 	text-align: center;
-	vertical-align: middle;
+	vertical-align: top;
 	width: 100%;
+}
+
+table td {
+	display: table-cell;
+	vertical-align: top;
 }
 
 tr.c {
