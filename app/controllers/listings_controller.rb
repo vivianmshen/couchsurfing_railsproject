@@ -13,6 +13,17 @@ class ListingsController < ApplicationController
     @user = @listing.user
     @email = @user.email
     @reviews = Review.find_all_by_listing(params[:id])
+    if @reviews.length == 0 
+      @average = 0
+    else
+      @sum = 0
+      @count = 0
+      @reviews.each do |r|
+        @sum += r.rating
+        @count += 1
+      end
+      @average = @sum / @count
+    end
   end
 
   def city
@@ -50,21 +61,37 @@ class ListingsController < ApplicationController
 
   def post_review
     @review = Review.new
-    @review.title = "asdf"
+    @review.title = params[:title]
     @review.description = params[:description]
     @review.name = params[:name]
-    @review.user_id = User.find(params[:user_id])
+    #@review.user_id = User.find(params[:user_id])
+    @review.user_id = User.find(session[:user_id]).id
     @review.rating = params[:rating]
     @review.listing = params[:listing]
     @review.save()
     flash[:notice] = "Review added successfully."
     redirect_to :action => :listing, :id => params[:listing]
-   
   end
 
   def delete
     Listing.find(params[:listing]).destroy
-    redirect_to :controller => :user, :action => listings
+    redirect_to :controller => :user, :action => :listings
+  end
+
+  def edit
+    @listing = Listing.find(params[:listing])
+  end
+
+  def update
+    @listing = Listing.find(params[:listing])
+    submission_hash = {"name" => params[:name],
+                       "description" => params[:description],
+                       "city" => params[:city],
+                       "category" => params[:category]}
+
+ 
+    @listing.update_attributes(submission_hash)
+    redirect_to :controller => :user, :action => :listings
   end
 
   def create

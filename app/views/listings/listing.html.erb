@@ -3,14 +3,18 @@
 
 <h3><%= @listing.description %></h3>
 
-<%= image_tag(asset_path(@listing.photo), :alt => "picture", :height => "400px") %>
-
-<h3><a href="mailto:<%= @email %>?Subject=Hello" target="_top">
-Contact <%= @listing.user.name %></a></h3>
-
-<h3><%= link_to "Write a Review", :controller => 'listings', :action => 'review', :id => params[:id]%></h3>
+<img src="<%=asset_path(@listing.photo)%>" alt="picture" class="four imagebtn">
+<br>
+<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">
+Contact</a>
+<a class = "btn btn-primary" href="<%= params[:id] %>/review">Review</a>
+<br><br>
+<h4>Reviews</h4> 
+<h5>Average Rating: <%= @average %></h5>
 
 <% @reviews.each do |r| %>
-	<h4><%= r.title %></h4>
-	<h5><%= r.description %></h4>
+	<div class="panel panel-primary">
+		<div class="panel-heading"><%= r.title %></div>
+		<div class="panel-body"><%= r.description %></div>
+	</div>
 <% end %>

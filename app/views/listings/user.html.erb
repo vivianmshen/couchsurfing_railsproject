@@ -1,6 +1,6 @@
 <% if @user != nil %>
 	<h1><%= @user.name%></h1>
-	<p>(Other userprofile information to be available here)</p>
+	<p><%= @user.bio %></p>
 	<div class="listings">
 		<h2>All Listings for <%= @user.name%></h2>
 		<table class="four">
