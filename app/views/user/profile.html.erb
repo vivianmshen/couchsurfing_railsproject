@@ -1,7 +1,13 @@
 <%= render "dashboard" %>
 
-<h4><%= current_user.name %></h4> 
-<img src="<%=asset_path(current_user.photo)%>" alt="picture" class="four imagebtn">
+<div class="profile">
+<img src="<%=asset_path(current_user.photo)%>" alt="<%=current_user.name%>" class="profile">
+
+<h4><%= current_user.name %></h4>
 <p><%= current_user.email %></p>
 <p><%= current_user.bio %></p>
-<%= link_to "Edit Profile", :controller => 'user', :action => 'edit'%>
+<%= link_to :controller => 'user', :action => 'edit' do %>
+	<span class="glyphicon glyphicon-pencil"></span>
+	Edit Profile
+<% end %>
+</div>

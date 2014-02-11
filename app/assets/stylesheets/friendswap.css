@@ -17,14 +17,8 @@ body {
 	padding-right: 5%;
 }
 
-#footer {
-}
-
 .navbar-static-top {
 	margin-bottom: 0px;
-}
-
-#main {
 }
 
 .jumbotron {
@@ -79,6 +73,18 @@ img.four {
 	height: 200px;
 	margin: 5px;
 	width: 300px;
+}
+
+.profile {
+	margin: 15px;
+	min-height: 300px;
+}
+
+img.profile {
+	display: block;
+	height: 300px;
+	margin: 0px 15px 15px 0px;
+	float: left;
 }
 
 .imagebtn {

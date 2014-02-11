@@ -3,7 +3,7 @@
 
 <h3><%= @listing.description %></h3>
 
-<img src="<%=asset_path(@listing.photo)%>" alt="picture" class="four imagebtn">
+<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="four imagebtn">
 <br>
 <a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">
 Contact</a>

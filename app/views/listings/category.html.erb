@@ -13,7 +13,7 @@
 				<% slice.each do |l| %>
 					<td><div class="tdfour">
 				  	<%= link_to :controller => 'listings', :action => 'listing', :id => l.id do %>
-					  	<%= image_tag("", :alt =>"picture", :class =>"four imagebtn") %>
+					  	<%= image_tag(asset_path(l.photo), :alt => l.name, :class =>"four imagebtn") %>
 					  	<h3><%= l.name %></h3>
 				  	<% end %>
 				  		<h4><%= link_to l.user.name, :controller => 'listings', :action => 'user', :id => l.user%></h4>
