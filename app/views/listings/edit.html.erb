@@ -4,7 +4,7 @@
   <p><%= flash[:notice] %></p><br/>
 <% end %>
 
-<%= form_tag("/listings/update", :method => "get", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+<%= form_tag("/listings/update", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
   <fieldset>
   <legend>Edit Listing</legend>
   <div class="form-group"><%= label_tag(:name, "Name", :class => "col-md-4 control-label", :for => "text-input") %>

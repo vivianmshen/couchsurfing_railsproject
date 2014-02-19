@@ -84,12 +84,21 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:listing])
-    submission_hash = {"name" => params[:name],
+    picture = params[:photo]
+    if picture == nil
+      submission_hash = {"name" => params[:name],
                        "description" => params[:description],
                        "city" => params[:city],
                        "category" => params[:category]}
-
- 
+    else
+      file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
+      file.write(picture.read)
+      submission_hash = {"name" => params[:name],
+                       "description" => params[:description],
+                       "city" => params[:city],
+                       "category" => params[:category],
+                       "photo" => picture.original_filename}
+    end
     @listing.update_attributes(submission_hash)
     redirect_to :controller => :user, :action => :listings
   end

@@ -4,7 +4,7 @@ Friendswap::Application.routes.draw do
   get "listings/create"
   get "listings/delete"
   get "listings/edit"
-  get "listings/update"
+  post "listings/update"
   get "user/edit"
   get "user/delete"
   post "user/update"
