@@ -24,6 +24,7 @@ class ListingsController < ApplicationController
       end
       @average = @sum / @count
     end
+    
   end
 
   def city

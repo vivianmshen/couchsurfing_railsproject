@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :listings
 	has_many :reviews
+	has_many :emails
 
 	def self.from_omniauth(auth)
 		where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

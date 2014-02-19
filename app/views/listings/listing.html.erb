@@ -34,6 +34,7 @@
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
 				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
+				<%= link_to "Send Message", :controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'%>
 			</div>
 		</div>
 	</div>
