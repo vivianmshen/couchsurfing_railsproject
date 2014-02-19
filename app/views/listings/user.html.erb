@@ -1,7 +1,10 @@
 <% if @user != nil %>
+<div class="well well-sm">
+<img src="<%=asset_path(current_user.photo)%>" alt="<%=current_user.name%>" class="thumb">
 	<h1><%= @user.name%></h1>
 	<p><%= @user.bio %></p>
-	<div class="well well-sm">
+</div>
+	<div class="well well-sm well-full">
 	<div class="listings">
 		<h2>All Listings for <%= @user.name%></h2>
 		<table class="four">

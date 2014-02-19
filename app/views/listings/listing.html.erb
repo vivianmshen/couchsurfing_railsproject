@@ -5,7 +5,7 @@
 				<h1><%= @listing.name %></h1>
 				<h4><%= @listing.description %></h4>
 				<div class="event">
-					<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="event">
+					<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="ev">
 				</div>
 			</div>
 			<div class="well well-lg">
@@ -29,7 +29,7 @@
 			</div>
 			<div class="well well-lg">
 				<div class="profile">
-					<img src="<%=asset_path(@listing.user.photo)%>" alt="<%=@listing.user.name%>" class="profile">
+					<img src="<%=asset_path(@listing.user.photo)%>" alt="<%=@listing.user.name%>" class="proflist">
 				</div>
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
