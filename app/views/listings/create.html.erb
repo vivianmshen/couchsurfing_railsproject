@@ -15,30 +15,14 @@
     <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
-    <label for="from">From</label>
-<input type="text" id="from" name="from">
-<label for="to">to</label>
-<input type="text" id="to" name="to">
-<script>
-  $(function() {
-    $( "#from" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "minDate", selectedDate );
-      }
+ 
+  <div id="cal"></div>
+  <script>
+    $('#cal').datepicker({
+      multidate: true
     });
-    $( "#to" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-  });
   </script>
+
   <div class="form-group">
     <%= label_tag(:category, "Category", :class => "col-md-4 control-label", :for => "selectbasic") %>
     <div class="col-md-4"><%= select_tag :category, options_for_select(['Eat', 'Nightlife', 'Outdoors', 'Sightseeing']), :id => "selectbasic", :class => "form-control"%></div>
