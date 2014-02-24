@@ -28,6 +28,7 @@ body {
 	padding-top: 300px;
 	text-align: center;
 	width: 100%;
+	min-width: 1000px;
 }
 
 .jumbotronpan {
@@ -47,6 +48,7 @@ body {
 .places {
 	background: #AAAAFF;
 	padding: 10px 50px 20px 50px;
+	min-width: 1000px;
 }
 
 .listings {
@@ -58,6 +60,7 @@ table.four{
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	min-width: 800px;
 }
 
 table td {
@@ -74,14 +77,17 @@ table td {
 img.four {
 	display: inline-block;
 	vertical-align: top;
-	height: 200px;
+	min-height: 92px;
+	height: auto;
+	max-height: 200px;
+	min-width: 150px;
 	width: auto\9;
 }
 
 .caption {
 	color: white;
 	position: absolute;
-	top: 130px;
+	top: 50%;
 	width: 100%;
 }
 
@@ -98,33 +104,54 @@ img.four {
 }
 
 .profile {
-	margin: 15px;
-	min-height: 300px;
+	margin: 5px;
+	min-height: 320px;
 }
 
-img.profile {
+img.prof {
+	margin: 5px 15px 5px 5px;
+	float: left;
+	height: 300px;
+	width: 300px;
+}
+
+img.proflist {
 	display: block;
 	height: 300px;
+	width: 300px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+img.thumb {
+	float: left;
+	height: 90px;
+	width: 90px;
+	margin: 5px 15px 5px 5px;
 }
 
 .event {
 	margin: 15px;
-	min-height: 400px;
+	height: auto;
 }
 
-img.event {
+img.ev {
 	display: block;
-	height: 400px;
+	height: auto;
+	max-height: 400px;
+	min-width: 300px;
+	width: auto\9;
 	margin-left: auto;
 	margin-right: auto;
-	width: 650px;
 }
 
 .well {
 	margin-top: 30px;
 	margin-bottom: 10px;
+}
+
+.well-full {
+	min-width: 1000px;
 }
 
 a:hover {
