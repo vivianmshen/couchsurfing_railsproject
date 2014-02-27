@@ -108,6 +108,13 @@ img.four {
 	min-height: 320px;
 }
 
+img.crop {
+	min-width: 200px;
+	min-height: 200px;
+	max-width: 800px;
+	max-height: 800px;
+}
+
 img.prof {
 	margin: 5px 15px 5px 5px;
 	float: left;
