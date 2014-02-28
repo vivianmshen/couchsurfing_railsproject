@@ -161,6 +161,24 @@ img.ev {
 	min-width: 1000px;
 }
 
+.panel-review {
+	margin-left: 120px;
+}
+
+.imgreview {
+	width: 100px;
+	float: left;
+}
+
+.imgreview:hover {
+	top: 2px;
+	left: 2px;
+}
+
 a:hover {
 	text-decoration: none;
+}
+
+.date {
+	color: #999999;
 }

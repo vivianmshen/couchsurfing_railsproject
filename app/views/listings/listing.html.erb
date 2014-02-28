@@ -10,13 +10,28 @@
 			</div>
 			<div class="well well-lg">
 				<h1>Reviews</h1>
-				<h4>Average Rating: <%= @average %></h4> 
+				<% if @average == -1 %>
+					<i>No ratings available yet.</i><br /><br />
+				<% else %>
+					<h4>Overall Rating: <span class="rateit" data-rateit-value=<%= @average %> data-rateit-readonly="true" data-rateit-ispreset="true" data-rateit-resetable="false"></span></h4>
+				<% end %>
+				
+				<!-- Eventually edit this code so that the user cannot rate himself; compare current_user.uid and @listing.user.uid -->
 				<a class="btn btn-primary" href="<%= params[:id] %>/review">Write a Review</a>
+
 				<br /><br />
 				<% @reviews.each do |r| %>
-					<div class="panel panel-info">
-						<div class="panel-heading"><%= r.title %><br />Rating: <%= r.rating %></div>
-						<div class="panel-body"><%= r.description %></div>
+					<%= link_to :controller => 'listings', :action => 'user', :id => User.find(r.user_id) do %>
+					<div class="imgreview">
+						<img src="<%=asset_path(User.find(r.user_id).photo)%>" alt="<%=User.find(r.user_id).name%>" class="thumb">
+						<center><%= User.find(r.user_id).name %></center>
+					</div>
+					<% end %>
+
+					<div class="panel panel-info panel-review">
+						<div class="panel-heading"><span class="rateit" data-rateit-value=<%= r.rating%> data-rateit-readonly="true" data-rateit-ispreset="true" data-rateit-resetable="false"></span>&nbsp;&nbsp;&nbsp;<b><%= r.title %></b></div>
+						<div class="panel-body"><%= r.description %>
+							<br /><br /><span class="date"><%= r.created_at.to_formatted_s(:long) %></span></div>
 					</div>
 				<% end %>
 			</div>

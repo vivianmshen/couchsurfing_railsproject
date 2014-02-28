@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
     @email = @user.email
     @reviews = Review.find_all_by_listing(params[:id])
     if @reviews.length == 0 
-      @average = 0
+      @average = -1
     else
       @sum = 0
       @count = 0
@@ -64,7 +64,6 @@ class ListingsController < ApplicationController
     @review.title = params[:title]
     @review.description = params[:description]
     @review.name = params[:name]
-    #@review.user_id = User.find(params[:user_id])
     @review.user_id = User.find(session[:user_id]).id
     @review.rating = params[:rating]
     @review.listing = params[:listing]
