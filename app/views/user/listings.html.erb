@@ -5,11 +5,10 @@
 	<p>You don't have any listings yet! <%= link_to "Create a listing now!", "/listings/create" %></p>
 <% else %>
 <%= link_to "/listings/create" do %>
-				<center><h4><span class="glyphicon glyphicon-plus"></span> Create New Listing</h4></center>
-			<% end %>
-<div class="well well-sm well-full">
+	<center><h4><span class="glyphicon glyphicon-plus"></span> Create New Listing</h4></center>
+	<% end %>
+	<div class="well well-sm well-full">
 		<div class="listings">
-			
 			<h2>All Listings for <%= @current_user.name%></h2>
 			<table class="four">
 				<% @listings.each_slice(4) do |slice| %>
