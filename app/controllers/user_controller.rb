@@ -53,4 +53,9 @@ class UserController < ApplicationController
       end
     end
 
+    def thread
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @emails = Email.all
+    end
+
 end

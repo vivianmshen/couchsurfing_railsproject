@@ -29,21 +29,34 @@ class ListingsController < ApplicationController
 
   def city
     if !session[:user_id].nil?
-      if params[:city] == "sf"
-        @city = "San Francisco"
-      elsif params[:city] == "ny"
-        @city = "New York"
-      end
-      @listings = Listing.find_all_by_city(@city)
-      @categories ||= Array.new
-      @listings.each do |l|
-        if(!@categories.include?(l.category))
-          @categories.push(l.category)
+      if params[:city] == "new"
+        redirect_to :controller => :listings, :action => :req
+      else
+        if params[:city] == "sf"
+          @city = "San Francisco"
+        elsif params[:city] == "ny"
+          @city = "New York"
+        end
+        @listings = Listing.find_all_by_city(@city)
+        @categories ||= Array.new
+        @listings.each do |l|
+          if(!@categories.include?(l.category))
+            @categories.push(l.category)
+          end
         end
       end
     else
       redirect_to :controller => :user, :action => :login
     end
+  end
+
+  def req
+    
+  end
+
+  def post_req
+    flash[:notice] = "We've received your request, we'll work on it as soon as possible!"
+    redirect_to :controller => :listings, :action => :index
   end
 
   def category

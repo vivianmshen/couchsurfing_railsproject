@@ -1,0 +1,16 @@
+<%= render "dashboard" %>
+
+<div class="well well-lg">
+	<h1>Thread with <%= params[:sender] %> </h1>
+		<br /><br />
+		<%= link_to "Reply", :controller => 'user', :action => 'email', :id => params[:sender], :linkedfrom => 'inbox' %>
+		<% @emails.reverse_each do |e| %>
+			<% if e.sender == params[:sender].to_i || e.receiver == params[:sender].to_i %>
+				<div class="panel panel-info">
+					
+					<div class="panel-heading"><b><%= link_to e.subject, :controller=> 'user', :action => 'thread', :id => e.id %></b> <br>From <%= User.find(e.sender).name %> at <%= e.created_at %> <br /></div>
+					<div class="panel-body"><%= e.body %></div>
+				</div>
+			<% end %>
+		<% end %>
+</div>
