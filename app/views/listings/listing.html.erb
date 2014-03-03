@@ -5,7 +5,7 @@
 				<h1><%= @listing.name %></h1>
 				<h4><%= @listing.description %></h4>
 				<div class="event">
-					<img src="<%=asset_path(@listing.photo)%>" alt="<%=@listing.name%>" class="ev">
+					<%= image_tag(asset_path(@listing.photo), :alt => @listing.name, :class => "ev") %>
 				</div>
 			</div>
 			<div class="well well-lg">
@@ -17,13 +17,13 @@
 				<% end %>
 				
 				<!-- Eventually edit this code so that the user cannot rate himself; compare current_user.uid and @listing.user.uid -->
-				<a class="btn btn-primary" href="<%= params[:id] %>/review">Write a Review</a>
+				<%= link_to "Write a Review", params[:id]+"/review", :class => "btn btn-primary" %>
 
 				<br /><br />
 				<% @reviews.each do |r| %>
 					<%= link_to :controller => 'listings', :action => 'user', :id => User.find(r.user_id) do %>
 					<div class="imgreview">
-						<img src="<%=asset_path(User.find(r.user_id).photo)%>" alt="<%=User.find(r.user_id).name%>" class="thumb">
+						<%= image_tag(asset_path(User.find(r.user_id).photo), :alt => User.find(r.user_id).name, :class => "thumb") %>
 						<center><%= User.find(r.user_id).name %></center>
 					</div>
 					<% end %>
@@ -39,16 +39,16 @@
 
 		<div class="col-md-5">
 			<div class="well well-lg">
-				<img align="center" src="http://yuilibrary.com/yui/docs/assets/calendar/calendar.png">
+				<%= image_tag("http://yuilibrary.com/yui/docs/assets/calendar/calendar.png", :align => "center") %>
 				<center><p>Dates widget to come.</p></center>
 			</div>
 			<div class="well well-lg">
 				<div class="profile">
-					<img src="<%=asset_path(@listing.user.photo)%>" alt="<%=@listing.user.name%>" class="proflist">
+					<%= image_tag(asset_path(@listing.user.photo), :alt => @listing.user.name, :class => "proflist") %>
 				</div>
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
-				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
+				<%= link_to "Contact", "mailto:"+@email+"?Subject=Hello", :target => "_top", :class => "btn btn-primary" %></center>
 			</div>
 		</div>
 	</div>

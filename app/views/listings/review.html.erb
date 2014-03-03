@@ -20,7 +20,7 @@
   </div>
 
   <div class="form-group">
-    <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input", :name => "desc") %>
+    <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input", :name => "description") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
   <%= hidden_field_tag(:listing, params[:id]) %>

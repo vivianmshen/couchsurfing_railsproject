@@ -109,9 +109,6 @@ class ListingsController < ApplicationController
   
   def post_create
     picture = params[:photo]
-    if picture == nil
-      flash[:notice] = "Please enter a valid photo name."
-      redirect_to :action => :create
     else
       file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
       file.write(picture.read)

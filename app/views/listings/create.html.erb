@@ -4,15 +4,15 @@
   <p><%= flash[:notice] %></p><br/>
 <% end %>
 
-<%= form_tag("/listings/post_create", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+<%= form_tag("/listings/post_create", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form", :onsubmit => "return validateListingForm()", :name => "listingform") do %>
   <fieldset>
   <legend>New Listing</legend>
   <div class="form-group">
-    <%= label_tag(:name, "Listing Name", :class => "col-md-4 control-label", :for => "text-input") %>
+    <%= label_tag(:name, "Listing Name", :class => "col-md-4 control-label", :for => "text-input", :name => "name") %>
     <div class="col-md-4"><%= text_field_tag(:name, nil, :class => "form-control input-md", :placeholder => "e.g. Fountain-hopping Adventure") %></div>
   </div>
   <div class="form-group">
-    <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
+    <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input", :name => "description") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
   <div class="form-group">
@@ -24,7 +24,7 @@
     <div class="col-md-4"><%= select_tag :city, options_for_select(['New York', 'San Francisco']), :id => "selectbasic", :class => "form-control"%></div>
   </div>
   <div class="form-group">
-    <%= label_tag(:photo, "Upload Photo", :class => "col-md-4 control-label", :for => "filebutton") %>
+    <%= label_tag(:photo, "Upload Photo", :class => "col-md-4 control-label", :for => "filebutton", :name => "photo") %>
     <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
   </div>
   <div class="form-group">
@@ -35,14 +35,3 @@
   </div>
 </fieldset>
 <% end %>
-
-<!--<%= form_for(@listing, :url => {:controller => 'listings', :action => 'post_create'}) do |form| %>
-  <div>Name: <%= form.text_field(:name) %></div>
-  <div>Description: <%= form.text_area(:description) %></div>
-  <div>Category: <%= form.select :category, ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'] %></div>
-  <div>City: <%= form.select :city, ['New York', 'San Francisco'] %></div>
-  <div>User: <%= form.select :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %></div>
-  <%= label_tag(:photo, "Upload Photo") %>
-  <%= file_field_tag(:photo) %>
-  <div><%= form.submit "Add Listing" %></div>
-<% end %>-->
