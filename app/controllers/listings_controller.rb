@@ -12,6 +12,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @user = @listing.user
     @email = @user.email
+    @dates = @listing.dates
     @reviews = Review.find_all_by_listing(params[:id])
     if @reviews.length == 0 
       @average = 0
@@ -120,6 +121,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new
     @users = User.all
+    @currentuser = User.find(session[:user_id]).id
   end
   
   def post_create
@@ -135,7 +137,8 @@ class ListingsController < ApplicationController
       @listing.description = params[:description]
       @listing.city = params[:city]
       @listing.category =params[:category]
-      @listing.user = User.find(session[:user_id])
+      @listing.user = User.find(params[:currentuser].to_i)
+      @listing.dates = params[:dates]
       @listing.photo = picture.original_filename
       @listing.save()
       flash[:notice] = "Listing added successfully."
