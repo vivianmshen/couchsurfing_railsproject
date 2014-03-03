@@ -12,6 +12,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @user = @listing.user
     @email = @user.email
+    @dates = @listing.dates
     @reviews = Review.find_all_by_listing(params[:id])
     if @reviews.length == 0 
       @average = 0

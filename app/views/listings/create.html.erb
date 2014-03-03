@@ -1,5 +1,4 @@
 <h1>Create a Listing</h1>
-<%= @currentuser %>
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p><br/>
 <% end %>
@@ -16,17 +15,22 @@
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
   <%= label_tag(:dates, "Dates", :class => "col-md-4 control-label", :for => "text-input") %>
-  <div id="cal"></div>
+  <div class="input-group date">
+    <input id="cal" type="text" class="form-control">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+  </div>
   <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
   <%= hidden_field_tag(:currentuser, nil, :class => "form-control", :value => @currentuser, :id => "currentuser") %>
   <script>
-    $(document).ready(function(){
       $('#cal').datepicker({
         multidate: true,
+        startDate: "today",
+        todayHighlight: true,
         format: "mm-dd-yyyy"
       });
-      $('#dates').val($('#cal').datepicker('getDates'));
-    });
+      function getDates() {
+        $('#dates').val($('#cal').datepicker("getDates"));
+      }
   </script>
 
   <div class="form-group">
@@ -44,7 +48,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">
-      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton", :onchange => "$('#dates').val($('#cal').datepicker('getDates'));" ) %>
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton", :onclick => "return getDates()" ) %>
     </div>
   </div>
 </fieldset>
