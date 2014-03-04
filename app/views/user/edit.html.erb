@@ -1,13 +1,13 @@
 <%= render "dashboard" %>
 
-<%= form_tag("/user/update", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+<%= form_tag("/user/update", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form", :onsubmit => "return validateProfileForm()", :name => "profileform") do %>
 	<fieldset>
   <legend>Edit Your Information</legend>
 
-  <div class="form-group"><%= label_tag(:email, "Email", :class => "col-md-4 control-label", :for => "text-input") %>
+  <div class="form-group"><%= label_tag(:email, "Email", :class => "col-md-4 control-label", :for => "text-input", :name => "email") %>
   	<div class="col-md-4"><%= text_field_tag(:email, value = @current_user.email, :class => "form-control input-md") %></div>
   </div>
-  <div class="form-group"><%= label_tag(:bio, "Bio", :class => "col-md-4 control-label", :for => "text-input") %>
+  <div class="form-group"><%= label_tag(:bio, "Bio", :class => "col-md-4 control-label", :for => "text-input", :name => "bio") %>
   	<div class="col-md-4"><%= text_area_tag(:bio, value = @current_user.bio, :class => "form-control input-md") %></div>
   </div>
   <div class="form-group"><%= label_tag(:photo, "Change Photo", :class => "col-md-4 control-label", :for => "filebutton" )%>

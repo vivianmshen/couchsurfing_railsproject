@@ -4,6 +4,7 @@
 			<div class="well well-lg">
 				<h1><%= @listing.name %></h1>
 				<h4><%= @listing.description %></h4>
+				<%= link_to "Edit Listing", :controller => 'listings', :action => 'edit', :listing => @listing.id%>
 				<div class="event">
 					<%= image_tag(asset_path(@listing.photo), :alt => @listing.name, :class => "ev") %>
 				</div>

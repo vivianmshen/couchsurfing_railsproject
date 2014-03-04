@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+
   def index
   	@users = User.all
   end
@@ -68,9 +69,21 @@ class ListingsController < ApplicationController
     @review.rating = params[:rating]
     @review.listing = params[:listing]
     @review.save()
-    flash[:notice] = "Review added successfully."
+    # flash[:notice] = "Review added successfully."
     redirect_to :action => :listing, :id => params[:listing]
   end
+
+=begin
+  def edit_review
+    @review = Review.find(params[:listing])
+    submission_hash = {
+      "title" => params[:title],
+      "description" => params[:description],
+      "rating" => params[:rating]}
+    @review.update_attributes(submission_hash)
+    redirect_to :action => :listing, :id => params[:listing]
+  end
+=end
 
   def delete
     Listing.find(params[:listing]).destroy
@@ -99,7 +112,8 @@ class ListingsController < ApplicationController
                        "photo" => picture.original_filename}
     end
     @listing.update_attributes(submission_hash)
-    redirect_to :controller => :user, :action => :listings
+    # redirect_to :controller => :user, :action => :listings
+    redirect_to :action => :listing, :id => listing_id
   end
 
   def create
@@ -109,6 +123,9 @@ class ListingsController < ApplicationController
   
   def post_create
     picture = params[:photo]
+    if picture == nil
+      flash[:notice] = "Please enter a valid photo name."
+      redirect_to :action => :create
     else
       file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
       file.write(picture.read)
@@ -120,7 +137,7 @@ class ListingsController < ApplicationController
       @listing.user = User.find(session[:user_id])
       @listing.photo = picture.original_filename
       @listing.save()
-      flash[:notice] = "Listing added successfully."
+      # flash[:notice] = "Listing added successfully."
       listing_id = @listing.id
       redirect_to :action => :listing, :id => listing_id
     end
