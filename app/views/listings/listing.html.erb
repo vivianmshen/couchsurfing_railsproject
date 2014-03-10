@@ -40,6 +40,10 @@
 		</div>
 	</div>
 </div>
+<div id="map_canvas" style="width: 600px; height: 400px"></div>
+<script>$('#map_canvas').ready(showAddress("1600 Amphitheatre Pky, Mountain View, CA"))</script>
+<script>document.addEventListener("DOMContentLoaded", showAddress("1600 Amphitheatre Pky, Mountain View, CA"))</script>
+
 <script>
 var str = $("#datearr").val();
 $('#cal').datepicker({
@@ -59,4 +63,6 @@ $('#cal').datepicker({
 		}
       });
 </script>
+
+
 &nbsp;

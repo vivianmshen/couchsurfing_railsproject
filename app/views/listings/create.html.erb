@@ -3,11 +3,6 @@
   <p><%= flash[:notice] %></p><br/>
 <% end %>
 
-
-
-
-<div id="map-canvas"></div>
-
 <%= form_tag("/listings/post_create", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
   <fieldset>
   <legend>New Listing</legend>
@@ -51,6 +46,10 @@
     <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
   </div>
   <div class="form-group">
+    <%= label_tag(:address, "Address", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:address, nil, :class => "form-control input-md", :placeholder => "e.g. 1600 Amphitheatre Parkway, Mountain View, CA") %></div>
+  </div>
+  <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">
       <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton", :onclick => "return getDates()" ) %>
@@ -59,7 +58,7 @@
 </fieldset>
 <% end %>
 
-  <form action="#" onsubmit="showAddress(this.address.value); return false">
+  <!--<form action="#" onsubmit="showAddress(this.address.value); return false">
       <p>
         Enter an address, and then drag the marker to tweak the location.
         <br/>
@@ -70,7 +69,7 @@
         <input type="submit" value="Go!" />
       </p>
       <div id="map_canvas" style="width: 600px; height: 400px"></div>
-  </form>
+  </form>-->
 
 <!--<%= form_for(@listing, :url => {:controller => 'listings', :action => 'post_create'}) do |form| %>
   <div>Name: <%= form.text_field(:name) %></div>
