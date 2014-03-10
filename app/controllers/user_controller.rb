@@ -38,7 +38,7 @@ class UserController < ApplicationController
   	end
 
 =begin
-    def postcrop
+    def post_crop
       pass photo in as param. see above
       use rmagick to crop & save image
       redirect_to :controller => :user, :action => :profile

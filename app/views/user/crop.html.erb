@@ -2,22 +2,20 @@
 <%= stylesheet_link_tag "jquery.Jcrop" %>
 <%= javascript_include_tag "jquery.Jcrop.min" %>
 <script type="text/javascript">
-  $(function() {
-    $('#cropbox').Jcrop({
-	    onChange: update_crop,
-	    onSelect: update_crop,
-	    setSelect: [0, 0, 500, 500],
-	    aspectRatio: 1
-    });
-  });
-  function update_crop(c) {
-		$('#x').val(c.x);
-		$('#y').val(c.y);
-		$('#x2').val(c.x2);
-		$('#y2').val(c.y2);
-		$('#w').val(c.w);
-		$('#h').val(c.h);
-	}
+	jQuery(document).ready(function(){
+		jQuery('#cropbox').Jcrop({
+			onChange: showCoords,
+			onSelect: showCoords
+		});
+	});
+	function showCoords(c) {
+		jQuery('#x1').val(c.x);
+		jQuery('#y1').val(c.y);
+		jQuery('#x2').val(c.x2);
+		jQuery('#y2').val(c.y2);
+		jQuery('#w').val(c.w);
+		jQuery('#h').val(c.h);
+	};
 </script>
 <% end %>
 
@@ -26,15 +24,15 @@
 	<center><%= image_tag current_user.photo, :id => "cropbox", :class => "crop" %></center>
 </div>
 
-<form onsubmit="return false;">
+<%= form_tag("/user/post_crop", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form", :onsubmit => "return false;", :name => "reviewform", :class => "coords") do %>
 	<fieldset>
-		<label>X1 <input type="text" size="4" id="x" name="x" /></label>
-		<label>Y1 <input type="text" size="4" id="y" name="y" /></label>
+		<label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+		<label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
 		<label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
 		<label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
 		<label>W <input type="text" size="4" id="w" name="w" /></label>
 		<label>H <input type="text" size="4" id="h" name="h" /></label>
 	  <%= submit_tag("Crop", :class=>"btn btn-primary", :id=>"singlebutton") %>
 	</fieldset>
-</form>
+<% end %>
 
