@@ -89,6 +89,7 @@ class ListingsController < ApplicationController
     if picture == nil
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
+                       "dates" => params[:dates],
                        "city" => params[:city],
                        "category" => params[:category]}
     else
@@ -96,6 +97,7 @@ class ListingsController < ApplicationController
       file.write(picture.read)
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
+                       "dates" => params[:dates],
                        "city" => params[:city],
                        "category" => params[:category],
                        "photo" => picture.original_filename}

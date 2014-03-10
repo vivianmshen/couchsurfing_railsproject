@@ -55,14 +55,3 @@
   </div>
 </fieldset>
 <% end %>
-
-<!--<%= form_for(@listing, :url => {:controller => 'listings', :action => 'post_create'}) do |form| %>
-  <div>Name: <%= form.text_field(:name) %></div>
-  <div>Description: <%= form.text_area(:description) %></div>
-  <div>Category: <%= form.select :category, ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'] %></div>
-  <div>City: <%= form.select :city, ['New York', 'San Francisco'] %></div>
-  <div>User: <%= form.select :user_id, options_from_collection_for_select(@users, 'id', 'name', 1) %></div>
-  <%= label_tag(:photo, "Upload Photo") %>
-  <%= file_field_tag(:photo) %>
-  <div><%= form.submit "Add Listing" %></div>
-<% end %>-->
