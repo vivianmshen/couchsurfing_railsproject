@@ -157,3 +157,7 @@ img.ev {
 a:hover {
 	text-decoration: none;
 }
+
+.datebox {
+	padding-left: 15px;
+}
