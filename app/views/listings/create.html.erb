@@ -14,10 +14,12 @@
     <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
-  <%= label_tag(:dates, "Dates", :class => "col-md-4 control-label", :for => "text-input") %>
-  <div class="input-group date">
-    <input id="cal" type="text" class="form-control">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+  <div class="form-group">
+    <%= label_tag(:dates, "Dates", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class = "col-md-4 input-group date" style="padding-left: 15px;">
+      <input id="cal" type="text" class="form-control">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+    </div>
   </div>
   <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
   <%= hidden_field_tag(:currentuser, nil, :class => "form-control", :value => @currentuser, :id => "currentuser") %>
