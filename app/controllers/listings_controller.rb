@@ -3,6 +3,9 @@ class ListingsController < ApplicationController
   	@users = User.all
   end
 
+  def explore
+  end
+
   def user
   	@user = User.find(params[:id])
     @listings = User.find(params[:id]).listings

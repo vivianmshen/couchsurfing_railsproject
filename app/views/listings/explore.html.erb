@@ -1,0 +1,25 @@
+<h1>Find a Listing</h1>
+
+<%= form_tag("/listings/post_create", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+  <fieldset>
+  <legend>Filters</legend>
+  <div class="form-group">
+  	<div class="col-md-4">
+  		<%= check_box_tag(:eat, :class => "form-control") %>
+		<%= label_tag(:eat, "Eat") %>
+	</div>
+	<div class="col-md-4">
+  		<%= check_box_tag(:outdoors) %>
+		<%= label_tag(:outdoors, "Outdoors") %>
+	</div>
+	<div class="col-md-4">
+  		<%= check_box_tag(:nightlife) %>
+		<%= label_tag(:nightlife, "Nightlife") %>
+	</div>
+	<div class="col-md-4">
+  		<%= check_box_tag(:sightseeing) %>
+	<%= label_tag(:sightseeing, "Sightseeing") %>
+	</div>
+  </div>
+</fieldset>
+<% end %>
