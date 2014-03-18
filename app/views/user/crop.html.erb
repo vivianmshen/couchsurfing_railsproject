@@ -5,7 +5,10 @@
 	jQuery(document).ready(function(){
 		jQuery('#cropbox').Jcrop({
 			onChange: showCoords,
-			onSelect: showCoords
+			onSelect: showCoords,
+			aspectRatio: 1,
+			setSelect: [0, 0, 200, 200],
+			minSize: [200, 200]
 		});
 	});
 	function showCoords(c) {
@@ -22,16 +25,18 @@
 <div class="well well-lg well-full">
 	<h2>Crop image</h2>
 	<center><%= image_tag current_user.photo, :class => "crop", :id => "cropbox" %></center>
+	<br />
+	<center>
+		<%= form_tag("/user/post_crop", :method => "post", :multipart => true, :class => "form-horizontal coords", :role => "form") do %>
+			<fieldset>
+				<input type="hidden" size="4" id="x1" name="x1" />
+				<input type="hidden" size="4" id="y1" name="y1" />
+				<input type="hidden" size="4" id="x2" name="x2" />
+				<input type="hidden" size="4" id="y2" name="y2" />
+				<input type="hidden" size="4" id="w" name="w" />
+				<input type="hidden" size="4" id="h" name="h" />
+			  <%= submit_tag("Crop", :class=>"btn btn-primary", :id=>"singlebutton") %>
+			</fieldset>
+		<% end %>
+	</center>
 </div>
-
-<%= form_tag("/user/postcrop", :method => "post", :multipart => true, :class => "form-horizontal coords", :role => "form", :onsubmit => "return false;", :name => "reviewform") do %>
-	<fieldset>
-		<label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
-		<label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
-		<label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
-		<label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
-		<label>W <input type="text" size="4" id="w" name="w" /></label>
-		<label>H <input type="text" size="4" id="h" name="h" /></label>
-	  <%= submit_tag("Crop", :class=>"btn btn-primary", :id=>"singlebutton") %>
-	</fieldset>
-<% end %>

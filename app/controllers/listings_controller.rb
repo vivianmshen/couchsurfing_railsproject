@@ -112,7 +112,6 @@ class ListingsController < ApplicationController
                        "photo" => picture.original_filename}
     end
     @listing.update_attributes(submission_hash)
-    # redirect_to :controller => :user, :action => :listings
     redirect_to :action => :listing, :id => listing_id
   end
 
@@ -137,7 +136,6 @@ class ListingsController < ApplicationController
       @listing.user = User.find(session[:user_id])
       @listing.photo = picture.original_filename
       @listing.save()
-      # flash[:notice] = "Listing added successfully."
       listing_id = @listing.id
       redirect_to :action => :listing, :id => listing_id
     end

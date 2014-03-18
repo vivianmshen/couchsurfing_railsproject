@@ -112,7 +112,7 @@ img.crop {
 	min-width: 200px;
 	min-height: 200px;
 	max-width: 800px;
-	max-height: 800px;
+	max-height: 500px;
 }
 
 img.prof {

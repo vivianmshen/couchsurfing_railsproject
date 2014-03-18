@@ -8,6 +8,7 @@ Friendswap::Application.routes.draw do
   get "user/edit"
   get "user/delete"
   post "user/update"
+  post "user/post_crop"
   post "listings/post_create"
 
   match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
