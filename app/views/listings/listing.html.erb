@@ -41,12 +41,40 @@
 	</div>
 </div>
 <div id="map_canvas" style="width: 600px; height: 400px"></div>
-<script>$('#map_canvas').ready(showAddress("1600 Amphitheatre Pky, Mountain View, CA"))</script>
-<script>document.addEventListener("DOMContentLoaded", showAddress("1600 Amphitheatre Pky, Mountain View, CA"))</script>
+<%= hidden_field_tag(:address, nil, :class => "form-control", :value => @address, :id => "mapaddress") %>
 
 <script>
-var str = $("#datearr").val();
-$('#cal').datepicker({
+	var map = null;
+	var geocoder = null;
+
+    function initialize(address) {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        geocoder = new GClientGeocoder();
+        if (geocoder) {
+          geocoder.getLatLng(
+            address,
+            function(point) {
+              if (!point) {
+                alert(address + " not found");
+              } else {
+                map.setCenter(point, 15);
+                var marker = new GMarker(point, {draggable: true});
+                map.addOverlay(marker);
+              }
+            }
+          );
+        }
+        //map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+        //map.setUIToDefault();
+        
+      }
+    }
+    var address = $("#mapaddress").val();
+    initialize(address);
+
+	var str = $("#datearr").val();
+	$('#cal').datepicker({
 		daysOfWeekDisabled: "0,1,2,3,4,5,6",
         beforeShowDay: function(date) {
         	var dateArr = new Array();

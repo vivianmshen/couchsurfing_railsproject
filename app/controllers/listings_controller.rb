@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
 
   def listing
     @listing = Listing.find(params[:id])
+    @address = "1600 Amphitheatre Parkway, Mountain View, CA"
     @user = @listing.user
     @email = @user.email
     @dates = @listing.dates
