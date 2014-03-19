@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
 
   def listing
     @listing = Listing.find(params[:id])
-    @address = "1600 Amphitheatre Parkway, Mountain View, CA"
+    @address = @listing.address
     @user = @listing.user
     @email = @user.email
     @dates = @listing.dates
@@ -57,7 +57,7 @@ class ListingsController < ApplicationController
   end
 
   def post_req
-    flash[:notice] = "We've received your request, we'll work on it as soon as possible!"
+    #alert("We've received your request, we'll work on it as soon as possible!");
     redirect_to :controller => :listings, :action => :index
   end
 
@@ -105,6 +105,7 @@ class ListingsController < ApplicationController
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
                        "city" => params[:city],
+                       "address" => params[:address],
                        "category" => params[:category]}
     else
       file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
@@ -113,6 +114,7 @@ class ListingsController < ApplicationController
                        "description" => params[:description],
                        "city" => params[:city],
                        "category" => params[:category],
+                       "address" => params[:address],
                        "photo" => picture.original_filename}
     end
     @listing.update_attributes(submission_hash)
@@ -141,6 +143,7 @@ class ListingsController < ApplicationController
       @listing.user = User.find(params[:currentuser].to_i)
       @listing.dates = params[:dates]
       @listing.photo = picture.original_filename
+      @listing.address = params[:address]
       @listing.save()
       flash[:notice] = "Listing added successfully."
       listing_id = @listing.id

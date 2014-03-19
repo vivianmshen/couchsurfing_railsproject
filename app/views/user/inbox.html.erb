@@ -1,10 +1,12 @@
 <%= render "dashboard" %>
 <div class="well well-lg">
 				<h1>Inbox</h1>
-				<br /><br />
+				<br />
 					<% @emails.reverse_each do |e| %>
 						<div class="panel panel-info">
-							<div class="panel-heading"><b><%= link_to e.subject, :controller=> 'user', :action => 'thread', :id => e.id, :sender => e.sender %></b> <br>From <%= User.find(e.sender).name %> at <%= e.created_at %> <br /></div>
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-envelope"></span><b>   <%= link_to e.subject, :controller=> 'user', :action => 'thread', :id => e.id, :sender => e.sender %></b> <span class="glyphicon glyphicon-share-alt"></span>
+								<br>From <%= User.find(e.sender).name %> at <%= e.created_at %> <br /></div>
 							<div class="panel-body"><%= e.body %></div>
 						</div>
 					<% end %>
