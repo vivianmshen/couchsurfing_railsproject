@@ -41,14 +41,14 @@ class UserController < ApplicationController
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     w = params[:w]
     h = params[:h]
-    x_offset = params[:x1]
-    y_offset = params[:y1]
+    x1 = params[:x1]
+    y1 = params[:y1]
 
     require 'open-uri'
     if File.exist?(Rails.root.join('app', 'assets', 'images', @current_user.photo))
       img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @current_user.photo))
       img.resize('800x500')
-      img.crop("#{w}x#{h}+#{200}+#{200}") #BUGGY OFFSET
+      img.crop("#{w}x#{h}+#{x1}+#{y1}")
       img.write(Rails.root.join('app', 'assets', 'images', @current_user.uid + '.jpg'))
       img
       submission_hash = {"photo" => @current_user.uid + '.jpg'}

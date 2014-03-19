@@ -26,12 +26,12 @@
 	<br />
 	<center>
 
-		<%= form_tag("/user/post_crop", :method => "post", :multipart => true, :class => "form-horizontal coords", :role => "form", :onsubmit => "return validateCropForm()", :name => "cropform") do %>
+		<%= form_tag("/user/post_crop", :method => "post", :multipart => true, :class => "form-horizontal coords", :role => "form") do %>
 			<fieldset>
-				<input type="text" size="4" id="x1" name="x1" /></label>
-				<input type="text" size="4" id="y1" name="y1" />
-				<input type="text" size="4" id="w" name="w" />
-				<input type="text" size="4" id="h" name="h" />
+				<input type="hidden" size="4" id="x1" name="x1" />
+				<input type="hidden" size="4" id="y1" name="y1" />
+				<input type="hidden" size="4" id="w" name="w" />
+				<input type="hidden" size="4" id="h" name="h" />
 			  <%= submit_tag("Crop", :class=>"btn btn-primary", :id=>"singlebutton") %>
 			</fieldset>
 		<% end %>
