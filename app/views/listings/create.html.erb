@@ -48,6 +48,10 @@
     <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
   </div>
   <div class="form-group">
+    <%= label_tag(:address, "Address", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:address, nil, :class => "form-control input-md", :placeholder => "e.g. 1600 Amphitheatre Parkway, Mountain View, CA") %></div>
+  </div>
+  <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">
       <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton", :onclick => "return getDates()" ) %>
@@ -55,3 +59,4 @@
   </div>
 </fieldset>
 <% end %>
+
