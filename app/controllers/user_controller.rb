@@ -5,6 +5,7 @@ class UserController < ApplicationController
 
 	def inbox
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @emails = Email.find_all_by_receiver(@current_user)
 	end
 
 	def listings
@@ -56,6 +57,30 @@ class UserController < ApplicationController
     end
 
     redirect_to :controller => :user, :action => :profile
+  end
+
+  def email
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def post_email
+    @email = Email.new
+    @email.subject = params[:subject]
+    @email.body = params[:body]
+    @email.sender = User.find(params[:sender]).id
+    @email.receiver = params[:receiver]
+    @email.save()
+    flash[:notice] = "Email sent successfully."
+    if params[:linkedfrom] == 'listing'
+      redirect_to :controller => :listings, :action => :listing, :id => params[:listing]
+    else
+      redirect_to :controller => :user, :action => :inbox
+    end
+  end
+
+  def thread
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @emails = Email.all
   end
 
 end

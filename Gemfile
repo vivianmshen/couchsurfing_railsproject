@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'bootstrap-datepicker-rails'
+
 gem 'figaro'
 
 # Use SCSS for stylesheets

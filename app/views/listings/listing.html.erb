@@ -40,8 +40,9 @@
 
 		<div class="col-md-5">
 			<div class="well well-lg">
-				<%= image_tag("http://yuilibrary.com/yui/docs/assets/calendar/calendar.png", :align => "center") %>
-				<center><p>Dates widget to come.</p></center>
+				<center><h4>Dates Available</h4></center>
+				<center><div id="cal"></div></center>
+				<%= hidden_field_tag(:dates, nil, :class => "form-control", :value => @dates, :id => "datearr") %>
 			</div>
 			<div class="well well-lg">
 				<div class="profile">
@@ -49,9 +50,60 @@
 				</div>
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
-				<%= link_to "Contact", "mailto:"+@email+"?Subject=Hello", :target => "_top", :class => "btn btn-primary" %></center>
+				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
+				<%= link_to "Send Message", :controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'%>
 			</div>
 		</div>
 	</div>
 </div>
-&nbsp;
+<div id="map_canvas" style="width: 600px; height: 400px"></div>
+<%= hidden_field_tag(:address, nil, :class => "form-control", :value => @address, :id => "mapaddress") %>
+
+<script>
+	var map = null;
+	var geocoder = null;
+
+    function initialize(address) {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        geocoder = new GClientGeocoder();
+        if (geocoder) {
+          geocoder.getLatLng(
+            address,
+            function(point) {
+              if (!point) {
+                //alert(address + " not found");
+              } else {
+                map.setCenter(point, 15);
+                var marker = new GMarker(point, {draggable: true});
+                map.addOverlay(marker);
+              }
+            }
+          );
+        }
+        //map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+        //map.setUIToDefault();
+        
+      }
+    }
+    var address = $("#mapaddress").val();
+    initialize(address);
+
+	var str = $("#datearr").val();
+	$('#cal').datepicker({
+		daysOfWeekDisabled: "0,1,2,3,4,5,6",
+        beforeShowDay: function(date) {
+        	var dateArr = new Array();
+			dateArr = str.split(",");
+			for (var i = 0; i < dateArr.length; i++) {
+        		var current = date.toString();
+        		if (dateArr[i] == current) {
+        			return {
+              tooltip: 'Example tooltip',
+              classes: 'active'
+            };
+				}
+			}
+		}
+      });
+</script>

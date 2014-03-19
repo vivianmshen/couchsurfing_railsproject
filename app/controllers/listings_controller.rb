@@ -4,6 +4,32 @@ class ListingsController < ApplicationController
   	@users = User.all
   end
 
+  def explore
+    @categories = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
+  end
+
+  def post_explore
+    @listings = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
+
+    if params[:checkboxes].present?
+      @listings = params[:checkboxes]
+    end
+
+    flash[:categorylist] = @listings
+    flash[:date] = params[:dates]
+    redirect_to :controller => :listings, :action => :explore_listings
+  end
+
+  def explore_listings
+    @val = flash[:date]
+    if @val.present?
+      @date = "%" + @val + "%"
+      @listings = Listing.where("category IN (?) AND dates like (?)", flash[:categorylist], @date)
+    else
+      @listings = Listing.where("category IN (?)", flash[:categorylist])
+    end
+  end
+
   def user
   	@user = User.find(params[:id])
     @listings = User.find(params[:id]).listings
@@ -11,8 +37,10 @@ class ListingsController < ApplicationController
 
   def listing
     @listing = Listing.find(params[:id])
+    @address = @listing.address
     @user = @listing.user
     @email = @user.email
+    @dates = @listing.dates
     @reviews = Review.find_all_by_listing(params[:id])
     if @reviews.length == 0 
       @average = -1
@@ -25,25 +53,39 @@ class ListingsController < ApplicationController
       end
       @average = @sum / @count
     end
+    
   end
 
   def city
     if !session[:user_id].nil?
-      if params[:city] == "sf"
-        @city = "San Francisco"
-      elsif params[:city] == "ny"
-        @city = "New York"
-      end
-      @listings = Listing.find_all_by_city(@city)
-      @categories ||= Array.new
-      @listings.each do |l|
-        if(!@categories.include?(l.category))
-          @categories.push(l.category)
+      if params[:city] == "new"
+        redirect_to :controller => :listings, :action => :req
+      else
+        if params[:city] == "sf"
+          @city = "San Francisco"
+        elsif params[:city] == "ny"
+          @city = "New York"
+        end
+        @listings = Listing.find_all_by_city(@city)
+        @categories ||= Array.new
+        @listings.each do |l|
+          if(!@categories.include?(l.category))
+            @categories.push(l.category)
+          end
         end
       end
     else
       redirect_to :controller => :user, :action => :login
     end
+  end
+
+  def req
+    
+  end
+
+  def post_req
+    #alert("We've received your request, we'll work on it as soon as possible!");
+    redirect_to :controller => :listings, :action => :index
   end
 
   def category
@@ -90,8 +132,10 @@ class ListingsController < ApplicationController
       file.write(picture.read)
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
+                       "dates" => params[:dates],
                        "city" => params[:city],
                        "category" => params[:category],
+                       "address" => params[:address],
                        "photo" => picture.original_filename}
       @listing.update_attributes(submission_hash)
       render :action => 'crop' 
@@ -99,6 +143,7 @@ class ListingsController < ApplicationController
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
                        "city" => params[:city],
+                       "address" => params[:address],
                        "category" => params[:category]}
       @listing.update_attributes(submission_hash)
       redirect_to :action => :listing, :id => listing_id
@@ -129,6 +174,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new
     @users = User.all
+    @currentuser = User.find(session[:user_id]).id
   end
   
   def post_create
@@ -144,8 +190,10 @@ class ListingsController < ApplicationController
       @listing.description = params[:description]
       @listing.city = params[:city]
       @listing.category =params[:category]
-      @listing.user = User.find(session[:user_id])
+      @listing.user = User.find(params[:currentuser].to_i)
+      @listing.dates = params[:dates]
       @listing.photo = picture.original_filename
+      @listing.address = params[:address]
       @listing.save()
       listing_id = @listing.id
       render :action => 'crop'

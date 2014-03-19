@@ -13,6 +13,26 @@
   <div class="form-group"><%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class="col-md-4"><%= text_area_tag(:description, @listing.description, :class => "form-control input-md") %></div>
   </div>
+  <div class="form-group">
+    <%= label_tag(:dates, "Dates", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class = "col-md-4 input-group date" style="padding-left: 15px;">
+      <input id="cal" type="text" class="form-control">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+    </div>
+  </div>
+  <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
+  <script>
+    var str = $("#dates").val();
+    $('#cal').datepicker({
+      multidate: true,
+      startDate: "today",
+      todayHighlight: true,
+      format: "mm-dd-yyyy",
+    });
+    function getDates() {
+      $('#dates').val($('#cal').datepicker("getDates"));
+    }
+  </script>
   <div class="form-group"><%= label_tag(:category, "Category", :class => "col-md-4 control-label", :for => "selectbasic") %>
     <div class="col-md-4"><%= select_tag :category, options_for_select(['Eat', 'Outdoors', 'Nightlife', 'Sightseeing'], @listing.category), :class => "form-control" %></div>
   </div>
@@ -22,11 +42,14 @@
   <div class="form-group"><%= label_tag(:photo, "Change Photo", :class => "col-md-4 control-label", :for => "filebutton") %>
     <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
   </div>
+  <div class="form-group"><%= label_tag(:address, "Change Address", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:address, @listing.address, :class => "form-control input-md") %></div>
+  </div>
   <%= hidden_field_tag(:listing, params[:listing]) %>
   <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">
-      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton") %>
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton", :onclick => "return getDates()") %>
     </div>
   </div>
 </fieldset>
