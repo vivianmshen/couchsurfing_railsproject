@@ -35,15 +35,6 @@ ActiveRecord::Schema.define(version: 20140318220017) do
     t.string   "address"
   end
 
-  create_table "messages", force: true do |t|
-    t.string   "subject"
-    t.integer  "receiver"
-    t.integer  "sender"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "reviews", force: true do |t|
     t.string   "title"
     t.string   "name"

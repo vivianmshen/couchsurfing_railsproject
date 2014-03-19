@@ -3,6 +3,32 @@ class ListingsController < ApplicationController
   	@users = User.all
   end
 
+  def explore
+    @categories = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
+  end
+
+  def post_explore
+    @listings = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
+
+    if params[:checkboxes].present?
+      @listings = params[:checkboxes]
+    end
+
+    flash[:categorylist] = @listings
+    flash[:date] = params[:dates]
+    redirect_to :controller => :listings, :action => :explore_listings
+  end
+
+  def explore_listings
+    @val = flash[:date]
+    if @val.present?
+      @date = "%" + @val + "%"
+      @listings = Listing.where("category IN (?) AND dates like (?)", flash[:categorylist], @date)
+    else
+      @listings = Listing.where("category IN (?)", flash[:categorylist])
+    end
+  end
+
   def user
   	@user = User.find(params[:id])
     @listings = User.find(params[:id]).listings
