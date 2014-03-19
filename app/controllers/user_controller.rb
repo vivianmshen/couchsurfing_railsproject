@@ -38,8 +38,23 @@ class UserController < ApplicationController
 	end
 
   def post_crop
-    
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    w = params[:w]
+    h = params[:h]
+    x = params[:x]
+    y = params[:y]
+
+    require 'open-uri'
+    if File.exist?(Rails.root.join('app', 'assets', 'images', @current_user.photo))
+      img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @current_user.photo))
+      img.resize('800x500')
+      img.crop("#{w}x#{h}+#{x}+#{y}") #BUGGY OFFSET
+      img.write(Rails.root.join('app', 'assets', 'images', @current_user.uid + '.jpg'))
+      img
+      submission_hash = {"photo" => @current_user.uid + '.jpg'}
+      @current_user.update_attributes(submission_hash)
+    end
+
     redirect_to :controller => :user, :action => :profile
   end
 
