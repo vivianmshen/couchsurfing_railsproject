@@ -115,6 +115,13 @@ img.crop {
 	max-height: 500px;
 }
 
+img.crop2 {
+	min-width: 300px;
+	min-height: 200px;
+	max-width: 900px;
+	max-height: 600px;
+}
+
 img.prof {
 	margin: 5px 15px 5px 5px;
 	float: left;
@@ -145,9 +152,7 @@ img.thumb {
 img.ev {
 	display: block;
 	height: auto;
-	max-height: 400px;
-	min-width: 300px;
-	width: auto\9;
+	height: 400px;
 	margin-left: auto;
 	margin-right: auto;
 }

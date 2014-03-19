@@ -1,0 +1,40 @@
+<% content_for (:head) do %>
+<%= javascript_include_tag "jquery.min" %>
+<%= javascript_include_tag "jquery.Jcrop" %>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('#cropbox').Jcrop({
+			onChange: showCoords,
+			onSelect: showCoords,
+			aspectRatio: 1.5,
+			setSelect: [0, 0, 300, 200],
+			minSize: [300, 200]
+		});
+	});
+	function showCoords(c) {
+		jQuery('#x1').val(c.x);
+		jQuery('#y1').val(c.y);
+		jQuery('#w').val(c.w);
+		jQuery('#h').val(c.h);
+	};
+</script>
+<% end %>
+
+<div class="well well-lg well-full">
+	<h2>Crop image</h2>
+	<center><%= image_tag @listing.photo, :class => "crop2", :id => "cropbox" %></center>
+	<br />
+	<center>
+
+		<%= form_tag("/listings/post_crop", :method => "post", :multipart => true, :class => "form-horizontal coords", :role => "form") do %>
+			<fieldset>
+				<input type="hidden" id="x1" name="x1" />
+				<input type="hidden" id="y1" name="y1" />
+				<input type="hidden" id="w" name="w" />
+				<input type="hidden" id="h" name="h" />
+				<input type="hidden" id="listing" name="listing" value=<%= @listing.id %> />
+			  <%= submit_tag("Crop", :class=>"btn btn-primary", :id=>"singlebutton") %>
+			</fieldset>
+		<% end %>
+	</center>
+</div>

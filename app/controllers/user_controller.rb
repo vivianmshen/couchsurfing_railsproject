@@ -47,7 +47,7 @@ class UserController < ApplicationController
     require 'open-uri'
     if File.exist?(Rails.root.join('app', 'assets', 'images', @current_user.photo))
       img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @current_user.photo))
-      img.resize('800x500')
+      img.resize('900x600')
       img.crop("#{w}x#{h}+#{x1}+#{y1}")
       img.write(Rails.root.join('app', 'assets', 'images', @current_user.uid + '.jpg'))
       img

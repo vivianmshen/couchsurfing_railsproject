@@ -73,18 +73,6 @@ class ListingsController < ApplicationController
     redirect_to :action => :listing, :id => params[:listing]
   end
 
-=begin
-  def edit_review
-    @review = Review.find(params[:listing])
-    submission_hash = {
-      "title" => params[:title],
-      "description" => params[:description],
-      "rating" => params[:rating]}
-    @review.update_attributes(submission_hash)
-    redirect_to :action => :listing, :id => params[:listing]
-  end
-=end
-
   def delete
     Listing.find(params[:listing]).destroy
     redirect_to :controller => :user, :action => :listings
@@ -97,12 +85,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:listing])
     picture = params[:photo]
-    if picture == nil
-      submission_hash = {"name" => params[:name],
-                       "description" => params[:description],
-                       "city" => params[:city],
-                       "category" => params[:category]}
-    else
+    if picture != nil
       file = File.new(Rails.root.join('app', 'assets', 'images', picture.original_filename), 'wb')
       file.write(picture.read)
       submission_hash = {"name" => params[:name],
@@ -110,9 +93,37 @@ class ListingsController < ApplicationController
                        "city" => params[:city],
                        "category" => params[:category],
                        "photo" => picture.original_filename}
+      @listing.update_attributes(submission_hash)
+      render :action => 'crop' 
+    else
+      submission_hash = {"name" => params[:name],
+                       "description" => params[:description],
+                       "city" => params[:city],
+                       "category" => params[:category]}
+      @listing.update_attributes(submission_hash)
+      redirect_to :action => :listing, :id => listing_id
     end
-    @listing.update_attributes(submission_hash)
-    redirect_to :action => :listing, :id => listing_id
+  end
+
+  def post_crop
+    @listing = Listing.find(params[:listing])
+    w = params[:w]
+    h = params[:h]
+    x1 = params[:x1]
+    y1 = params[:y1]
+
+    require 'open-uri'
+    if File.exist?(Rails.root.join('app', 'assets', 'images', @listing.photo))
+      img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @listing.photo))
+      img.resize('800x500')
+      img.crop("#{w}x#{h}+#{x1}+#{y1}")
+      img.write(Rails.root.join('app', 'assets', 'images', @listing.user_id.to_s + '_' + @listing.id.to_s + '.jpg'))
+      img
+      submission_hash = {"photo" => @listing.user_id.to_s + '_' + @listing.id.to_s + '.jpg'}
+      @listing.update_attributes(submission_hash)
+    end
+
+    redirect_to :action => :listing, :id => @listing.id
   end
 
   def create
@@ -137,7 +148,7 @@ class ListingsController < ApplicationController
       @listing.photo = picture.original_filename
       @listing.save()
       listing_id = @listing.id
-      redirect_to :action => :listing, :id => listing_id
+      render :action => 'crop'
     end
   end
 
