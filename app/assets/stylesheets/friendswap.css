@@ -3,18 +3,19 @@
 }
 html, body {
 	height: 100%;
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -5em;
 }
-.footer, .push {
+.footer .push {
 	height: 4em;
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
-
-
 
 body {
 	padding-top: 50px;
@@ -33,10 +34,13 @@ body {
 .navbar {
 	padding-left: 5%;
 	padding-right: 5%;
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
 
 .navbar-static-top {
-	margin-bottom: 0px;
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
 
 .jumbotron {
