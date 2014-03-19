@@ -16,6 +16,15 @@ function validateReviewForm() {
   }
 }
 
+function validateCropForm() {
+	var x_offset = document.forms["cropform"]["x1"].value;
+	var y_offset = document.forms["cropform"]["y1"].value;
+	var w = document.forms["cropform"]["w"].value;
+	var h = document.forms["cropform"]["h"].value;
+	alert("Your variables are: x-offset " + x_offset + ", y-offset " + y_offset + ", width " + w + ", height " + h + ".");
+	return false;
+}
+
 function validateProfileForm() {
 	var email = document.forms["listingform"]["email"].value;
 	if (email == null || email == "") {
