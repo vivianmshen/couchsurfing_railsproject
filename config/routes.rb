@@ -1,6 +1,8 @@
 Friendswap::Application.routes.draw do
   get "listings/index" 
   get "listings/explore"
+  post "listings/post_explore"
+  get "listings/explore_listings"
   #get "listings/index" => "listings#index"
   get "listings/create"
   get "listings/delete"

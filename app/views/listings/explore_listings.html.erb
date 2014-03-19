@@ -1,0 +1,26 @@
+<h1>Search Results</h1>
+<div class="well well-sm well-full">
+		<div class="listings">
+			
+			<table class="four">
+				<% @listings.each_slice(4) do |slice| %>
+					<tr>
+						<% slice.each do |l| %>
+							<td><div class="tdfour">
+						  	<%= link_to  :controller => 'listings', :action => 'listing', :id => l.id do %>
+						  	<img src="<%=asset_path(l.photo)%>" alt="picture" class="four imagebtn">
+						  	<h3><%= l.name %></h3>
+					  	<% end %>
+						  <p><%= l.description %></p>
+							</div></td>
+						<% end %>
+						<% if @listings.count < 4 %>
+						  <% for x in 0...(4-@listings.count) do %>
+						  	<td><div class="tdfour">&nbsp;</div></td>
+						  <% end %>
+						<% end %>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
