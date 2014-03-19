@@ -9,6 +9,8 @@ Friendswap::Application.routes.draw do
   get "user/delete"
   post "user/update"
   post "listings/post_create"
+  post "user/post_email"
+  get "user/thread"
 
   match "/auth/:provider/callback", :to => "sessions#create", via: [:get, :post]
   match "/auth/failure", :to => redirect('/'), via: [:get, :post]
@@ -18,6 +20,8 @@ Friendswap::Application.routes.draw do
 
   get "listings/newyork"
   get "listings/sanfrancisco"
+  get "listings/req"
+  post "listings/post_req"
   get 'listings/user/:id' => 'listings#user'
   get 'listings/listing/:id' => 'listings#listing'
   get 'listings/listing/:id/review' => 'listings#review'
@@ -32,6 +36,7 @@ Friendswap::Application.routes.draw do
   get "user/dashboard/profile" => "user#profile"
   get "user/dashboard/inbox" => "user#inbox"
   get "user/dashboard/listings" => "user#listings"
+  get "user/email"
 
   #get "listings/newyork/:id/city=:city" => "listings#category"
   #get "listings/sanfrancisco/:id/city=:city" => "listings#category"

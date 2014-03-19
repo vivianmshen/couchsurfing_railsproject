@@ -1,0 +1,52 @@
+<%= render "dashboard" %>
+
+<div class="well well-lg">
+	<h2> Message thread with <%= User.find(params[:sender]).name %> </h2><br>
+	<form method="get" action="email" controller="user">
+		<button type="submit" class="btn btn-default btn-med" onclick>
+  			<span class="glyphicon glyphicon-share-alt"></span> Reply
+		</button>
+		<input type='hidden' name='id' value= <%=params[:sender]%>>
+		<input type='hidden' name='linkedfrom' value='inbox'>
+	</form>
+	<br>
+		<% @mostRecent = 0 %>
+		<% @emails.reverse_each do |e| %>
+			<% if e.sender == params[:sender].to_i || e.receiver == params[:sender].to_i %>
+				<% if e.id > @mostRecent %> 
+					<% @mostRecent = e.id %>
+				<% end %>
+				<% if e.sender == @current_user.id %>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<b><a onclick="showBody(<%= e.id%>)"><%= e.subject %></a></b> 
+							<br>From you at <%= e.created_at %> <br /></div>
+						<div class="panel-body" id= "<%= e.id%>"> <%= e.body %></div>
+					</div>
+				<% else %>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<b><a onclick="showBody(<%= e.id%>)"><%= e.subject %></a></b>
+							<br>From <%= User.find(e.sender).name %> at <%= e.created_at %> <br /></div>
+						<div class="panel-body" id= "<%= e.id%>" ><%= e.body %></div>
+					</div>
+				<% end %>
+			<% end %>
+		<% end %>
+		<%= hidden_field_tag(:mostRecent, nil, :class => "form-control", :value => @mostRecent, :id => "mostRecent") %>
+
+</div>
+
+<script>
+	$(".panel-body").hide();
+	$("#" + $("#mostRecent").val()).show();
+
+	function showBody(id) {
+		if ($('#' + id).is(':visible')) {
+			$("#" + id).hide();
+		} else {
+			$("#" + id).show();
+		}
+		
+	}
+</script>

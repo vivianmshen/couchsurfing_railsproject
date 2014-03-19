@@ -1,0 +1,22 @@
+<h1>Want a new city?</h1> 
+
+<%= form_tag("/listings/post_req", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+  <fieldset>
+  <legend>Let us know what you think</legend>
+  <div class="form-group">
+    <%= label_tag(:vote, "Vote", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :vote, options_for_select(['Chicago', 'Seattle', 'Portland', 'Boston', 'Other']), :id => "selectbasic", :class => "form-control"%></div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:comments, "Comments", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_area_tag(:comments, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton"></label>
+    <div class="col-md-4">
+      <%= submit_tag("Submit", :class=>"btn btn-primary", :id=>"singlebutton") %>
+    </div>
+  </div>
+
+</fieldset>
+<% end %>

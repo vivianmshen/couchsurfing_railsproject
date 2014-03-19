@@ -35,13 +35,46 @@
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
 				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
+				<%= link_to "Send Message", :controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'%>
 			</div>
 		</div>
 	</div>
 </div>
+<div id="map_canvas" style="width: 600px; height: 400px"></div>
+<%= hidden_field_tag(:address, nil, :class => "form-control", :value => @address, :id => "mapaddress") %>
+
 <script>
-var str = $("#datearr").val();
-$('#cal').datepicker({
+	var map = null;
+	var geocoder = null;
+
+    function initialize(address) {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        geocoder = new GClientGeocoder();
+        if (geocoder) {
+          geocoder.getLatLng(
+            address,
+            function(point) {
+              if (!point) {
+                alert(address + " not found");
+              } else {
+                map.setCenter(point, 15);
+                var marker = new GMarker(point, {draggable: true});
+                map.addOverlay(marker);
+              }
+            }
+          );
+        }
+        //map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+        //map.setUIToDefault();
+        
+      }
+    }
+    var address = $("#mapaddress").val();
+    initialize(address);
+
+	var str = $("#datearr").val();
+	$('#cal').datepicker({
 		daysOfWeekDisabled: "0,1,2,3,4,5,6",
         beforeShowDay: function(date) {
         	var dateArr = new Array();
@@ -58,4 +91,6 @@ $('#cal').datepicker({
 		}
       });
 </script>
+
+
 &nbsp;

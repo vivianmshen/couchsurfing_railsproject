@@ -1,3 +1,7 @@
+<!--<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p><br/>
+<% end %>
+-->
 <div class="jumbotron" style="background-image: url('https://dl.dropboxusercontent.com/u/25436882/home.jpg');">
 	<h1>Live like a local.</h1>
 	<div class="btn-group">
@@ -17,6 +21,7 @@
     <tr>
       <td><%= link_to image_tag("sf.jpg", :alt => "sf", :class => "four imagebtn img-responsive"), :controller => 'listings', :action => 'city', :city => 'sf'%></td>
       <td><%= link_to image_tag("ny.jpg", :alt => "ny", :class => "four imagebtn img-responsive"), :controller => 'listings', :action => 'city', :city => 'ny'%></td>
+      <td><%= link_to "Want to see a new city? Request it here!", :controller => 'listings', :action => 'city', :city => 'new'%></td>
       <td></td>
       <td></td>
     </tr>
