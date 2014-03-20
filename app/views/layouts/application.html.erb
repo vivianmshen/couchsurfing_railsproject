@@ -28,7 +28,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <% if current_user %>
                     <li><p class="navbar-text">Welcome, <strong><%= current_user.name %></strong>!</p></li>
-                    <li><%= link_to "Explore", :controller => 'listings', :action => 'index'%></li>
+                    <li><%= link_to "Explore", :controller => 'listings', :action => 'explore'%></li>
                     <li><%= link_to "Dashboard", :controller => 'user', :action => 'dashboard'%></li>
                     <li><%= link_to "Create Listing", "/listings/create" %></li>
                     <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>

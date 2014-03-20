@@ -1,6 +1,6 @@
 <% if @user != nil %>
 <div class="well well-sm wel-full">
-<img src="<%=asset_path(current_user.photo)%>" alt="<%=current_user.name%>" class="thumb">
+<img src="<%=asset_path(@user.photo)%>" alt="<%=current_user.name%>" class="thumb">
 	<h1><%= @user.name%></h1>
 	<p><%= @user.bio %></p>
 </div>
