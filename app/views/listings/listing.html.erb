@@ -7,7 +7,9 @@
 			<div class="well well-lg">
 				<h1><%= @listing.name %></h1>
 				<h4><%= @listing.description %></h4>
-				<%= link_to "Edit Listing", :controller => 'listings', :action => 'edit', :listing => @listing.id%>
+				<% if @current_user == @listing.user %>
+					<%= link_to "Edit Listing", :controller => 'listings', :action => 'edit', :listing => @listing.id%>
+				<% end %>
 				<div class="event">
 					<center><%= image_tag(asset_path(@listing.photo), :alt => @listing.name, :class => "ev") %></center>
 				</div>
@@ -30,8 +32,9 @@
 					<h4>Overall Rating: <span class="rateit" data-rateit-value=<%= @average %> data-rateit-readonly="true" data-rateit-ispreset="true" data-rateit-resetable="false"></span></h4>
 				<% end %>
 				
-				<!-- Eventually edit this code so that the user cannot rate himself; compare current_user.uid and @listing.user.uid -->
-				<%= link_to "Write a Review", params[:id]+"/review", :class => "btn btn-primary" %>
+				<% if @current_user != @listing.user %>
+					<%= link_to "Write a Review", params[:id]+"/review", :class => "btn btn-primary" %>
+				<% end %>
 
 				<br /><br />
 				<% @reviews.each do |r| %>
@@ -62,7 +65,9 @@
 				</div>
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
-				<%= link_to "Send Message", {:controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'}, :class => "btn btn-primary" %>
+				<% if @current_user != @listing.user %>
+					<%= link_to "Send Message", {:controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'}, :class => "btn btn-primary" %>
+				<% end %>
 				</center>
 			</div>
 		</div>
