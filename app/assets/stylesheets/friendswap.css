@@ -1,34 +1,34 @@
-.row, .col-md-7 {
-	height: 100%;
-}
+/*
+ * friendswap.css
+ * 
+ * This document contains CSS styling in addition to
+ * standard packages used (Bootstrap, Jcrop, RateIt).
+ */
 
-#map_canvas {
-	max-width: 100%;
-	max-height: 100%;
-	height: auto;
-}
+
+
+/* 
+ * OVERALL LAYOUT 
+ */
 
 * {
 	margin: 0;
 }
+
 html, body {
 	height: 100%;
-	padding-bottom: 0px !important;
-	margin-bottom: 0px !important;
-}
-.wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-}
-.footer .push {
-	height: 4em;
 	padding-bottom: 0px !important;
 	margin-bottom: 0px !important;
 }
 
 body {
 	padding-top: 50px;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
 }
 
 #container {
@@ -41,6 +41,18 @@ body {
 	font-size: 16px;
 }
 
+.footer .push {
+	height: 4em;
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+
+
+/*
+ * NAVIGATION
+ */
+
 .navbar {
 	padding-left: 5%;
 	padding-right: 5%;
@@ -52,6 +64,12 @@ body {
 	padding-bottom: 0px !important;
 	margin-bottom: 0px !important;
 }
+
+
+
+/*
+ * JUMBOTRON
+ */
 
 .jumbotron {
 	background-size: cover;
@@ -75,6 +93,16 @@ body {
 .jumbotron h2 {
 	color: white;
 	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+}
+
+
+
+/*
+ * CONTENT LAYOUT
+ */
+
+.row, .col-md-7 {
+	height: 100%;
 }
 
 .places {
@@ -106,6 +134,35 @@ table td {
 	vertical-align: top;
 }
 
+.profile {
+	margin: 5px;
+	min-height: 320px;
+}
+
+.event {
+	margin: 15px;
+	height: auto;
+}
+
+.well {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+.well-full {
+	min-width: 1000px;
+}
+
+.panel-review {
+	margin-left: 120px;
+}
+
+
+
+/*
+ * IMAGES
+ */
+
 img.four {
 	display: inline-block;
 	vertical-align: top;
@@ -114,30 +171,6 @@ img.four {
 	max-height: 200px;
 	min-width: 150px;
 	width: auto\9;
-}
-
-.caption {
-	color: white;
-	position: absolute;
-	top: 50%;
-	width: 100%;
-}
-
-.imagebtn {
-	position: relative;
-	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
-	-webkit-box-shadow: 3px 3px 3px #7C7C7C;
-  box-shadow: 3px 3px 3px #7C7C7C;
-}
-
-.imagebtn:hover {
-	top: 2px;
-	left: 2px;
-}
-
-.profile {
-	margin: 5px;
-	min-height: 320px;
 }
 
 img.crop {
@@ -176,11 +209,6 @@ img.thumb {
 	margin: 5px 15px 5px 5px;
 }
 
-.event {
-	margin: 15px;
-	height: auto;
-}
-
 img.ev {
 	display: inline-block;
 	min-height: 200px;
@@ -191,17 +219,16 @@ img.ev {
 	width: auto\9;
 }
 
-.well {
-	margin-top: 30px;
-	margin-bottom: 10px;
+.imagebtn {
+	position: relative;
+	text-shadow: 0 0 0.1in #000000, 0 0 0.2in #000000, 0 0 0.3in #000000;
+	-webkit-box-shadow: 3px 3px 3px #7C7C7C;
+  box-shadow: 3px 3px 3px #7C7C7C;
 }
 
-.well-full {
-	min-width: 1000px;
-}
-
-.panel-review {
-	margin-left: 120px;
+.imagebtn:hover {
+	top: 2px;
+	left: 2px;
 }
 
 .imgreview {
@@ -212,6 +239,25 @@ img.ev {
 .imgreview:hover {
 	top: 2px;
 	left: 2px;
+}
+
+
+
+/*
+ * OTHER
+ */
+
+#map_canvas {
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+}
+
+.caption {
+	color: white;
+	position: absolute;
+	top: 50%;
+	width: 100%;
 }
 
 a:hover {
