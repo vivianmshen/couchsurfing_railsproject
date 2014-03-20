@@ -1,16 +1,25 @@
 <h1>Want a new city?</h1> 
 
-<%= form_tag("/listings/post_req", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form") do %>
+<%= form_tag("/listings/post_req", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form", :onsubmit => "return validateNewCityForm()", :name => "voteform") do %>
   <fieldset>
-  <legend>Let us know what you think!</legend>
+  <legend>Let us know where we should go!</legend>
   <div class="form-group">
-    <%= label_tag(:vote, "Vote", :class => "col-md-4 control-label", :for => "selectbasic") %>
-    <div class="col-md-4"><%= select_tag :vote, options_for_select(['Chicago', 'Seattle', 'Portland', 'Boston', 'Other']), :id => "selectbasic", :class => "form-control"%></div>
+    <%= label_tag(:vote, "Cities", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4">
+    <input type="checkbox" name="newcity" value="boston"> Boston<br />
+    <input type="checkbox" name="newcity" value="chicago"> Chicago<br />
+    <input type="checkbox" name="newcity" value="losangeles"> Los Angeles<br />
+    <input type="checkbox" name="newcity" value="portland"> Portland<br />
+    <input type="checkbox" name="newcity" value="seattle"> Seattle<br />
+    <input type="checkbox" name="newcity" value="other"> Other (specify below)<br />
+    </div>
   </div>
+
   <div class="form-group">
     <%= label_tag(:comments, "Comments", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class="col-md-4"><%= text_area_tag(:comments, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
+
   <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">

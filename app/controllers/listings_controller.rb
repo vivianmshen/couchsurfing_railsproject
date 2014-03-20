@@ -84,7 +84,6 @@ class ListingsController < ApplicationController
   end
 
   def post_req
-    #alert("We've received your request, we'll work on it as soon as possible!");
     redirect_to :controller => :listings, :action => :index
   end
 
@@ -142,6 +141,7 @@ class ListingsController < ApplicationController
     else
       submission_hash = {"name" => params[:name],
                        "description" => params[:description],
+                       "dates" => params[:dates],
                        "city" => params[:city],
                        "address" => params[:address],
                        "category" => params[:category]}

@@ -21,8 +21,9 @@
     <tr>
       <td><%= link_to image_tag("sf.jpg", :alt => "sf", :class => "four imagebtn img-responsive"), :controller => 'listings', :action => 'city', :city => 'sf'%></td>
       <td><%= link_to image_tag("ny.jpg", :alt => "ny", :class => "four imagebtn img-responsive"), :controller => 'listings', :action => 'city', :city => 'ny'%></td>
-      <td><%= link_to "Want to see a new city? Request it here!", :controller => 'listings', :action => 'city', :city => 'new'%></td>
-      <td></td>
+      <td>
+      	<h3>Want to see<br />a <b>new city</b> on<br />Friendswap?<br />Request it <%= link_to 'here', :controller => 'listings', :action => 'city', :city => 'new' %>!</h3>
+				</td>
       <td></td>
     </tr>
   </table>

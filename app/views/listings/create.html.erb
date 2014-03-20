@@ -1,7 +1,8 @@
-<h1>Create a Listing</h1>
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p><br/>
+<% content_for (:head) do %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
 <% end %>
+
+<h1>Create a Listing</h1>
 
 <%= form_tag("/listings/post_create", :method => "post", :multipart => true, :class => "form-horizontal", :role => "form", :onsubmit => "return validateListingForm()", :name => "listingform") do %>
   <fieldset>
@@ -37,17 +38,6 @@
   </div>
   <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
   <%= hidden_field_tag(:currentuser, nil, :class => "form-control", :value => @currentuser, :id => "currentuser") %>
-  <script>
-      $('#cal').datepicker({
-        multidate: true,
-        startDate: "today",
-        todayHighlight: true,
-        format: "mm-dd-yyyy"
-      });
-      function getDates() {
-        $('#dates').val($('#cal').datepicker("getDates"));
-      }
-  </script>
 
   <div class="form-group">
     <%= label_tag(:photo, "Upload Photo", :class => "col-md-4 control-label", :for => "filebutton", :name => "photo") %>
@@ -60,4 +50,18 @@
     </div>
   </div>
 </fieldset>
+<% end %>
+
+<% content_for (:foot) do %>
+  <script>
+      $('#cal').datepicker({
+        multidate: true,
+        startDate: "today",
+        todayHighlight: true,
+        format: "mm-dd-yyyy"
+      });
+      function getDates() {
+        $('#dates').val($('#cal').datepicker("getDates"));
+      }
+  </script>
 <% end %>

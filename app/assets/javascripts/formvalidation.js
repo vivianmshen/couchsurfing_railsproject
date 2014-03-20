@@ -16,6 +16,11 @@ function validateReviewForm() {
   }
 }
 
+function validateNewCityForm() {
+	alert("We've received your request, and we'll work on it as soon as possible. Thank you!");
+	return false;
+}
+
 function validateProfileForm() {
 	var email = document.forms["listingform"]["email"].value;
 	if (email == null || email == "") {
