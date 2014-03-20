@@ -1,13 +1,16 @@
 class ListingsController < ApplicationController
 
+  #Index page (home)
   def index
   	@users = User.all
   end
 
+  #Explore page
   def explore
     @categories = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
   end
 
+  #Post explore filtering
   def post_explore
     @listings = ['Eat', 'Outdoors', 'Nightlife', 'Sightseeing']
 
@@ -20,6 +23,7 @@ class ListingsController < ApplicationController
     redirect_to :controller => :listings, :action => :explore_listings
   end
 
+  #Filtered results display after the post
   def explore_listings
     @val = flash[:date]
     if @val.present?
@@ -30,11 +34,13 @@ class ListingsController < ApplicationController
     end
   end
 
+  #Show and individual user page
   def user
   	@user = User.find(params[:id])
     @listings = User.find(params[:id]).listings
   end
 
+  #Show an individual listing
   def listing
     @listing = Listing.find(params[:id])
     @address = @listing.address
@@ -56,6 +62,7 @@ class ListingsController < ApplicationController
     
   end
 
+  #Displays the city page, which has all the listings for a city
   def city
     if !session[:user_id].nil?
       if params[:city] == "new"
@@ -79,14 +86,17 @@ class ListingsController < ApplicationController
     end
   end
 
+  #Submit a req for a new city
   def req
     
   end
 
+  #Post submission of a request for a new city
   def post_req
     redirect_to :controller => :listings, :action => :index
   end
 
+  #Shows the listings under a category for a city
   def category
     if params[:city] == "sf"
       @city = "San Francisco"
@@ -96,11 +106,13 @@ class ListingsController < ApplicationController
     @listings = Listing.find_all_by_city(@city)
   end
 
+  #Page to submit a review for a listing
   def review
     @users = User.all
     @review = Review.new
   end
 
+  #Post submission of a review for a listing
   def post_review
     @review = Review.new
     @review.title = params[:title]
@@ -114,15 +126,18 @@ class ListingsController < ApplicationController
     redirect_to :action => :listing, :id => params[:listing]
   end
 
+  #Delete a listing
   def delete
     Listing.find(params[:listing]).destroy
     redirect_to :controller => :user, :action => :listings
   end
 
+  #Edit a listing
   def edit
     @listing = Listing.find(params[:listing])
   end
 
+  #Post edit, actually update a listing in the back
   def update
     @listing = Listing.find(params[:listing])
     picture = params[:photo]
@@ -150,6 +165,7 @@ class ListingsController < ApplicationController
     end
   end
 
+  #Post cropping
   def post_crop
     @listing = Listing.find(params[:listing])
     w = params[:w]
@@ -171,12 +187,14 @@ class ListingsController < ApplicationController
     redirect_to :action => :listing, :id => @listing.id
   end
 
+  #Create a new listing page
   def create
     @listing = Listing.new
     @users = User.all
     @currentuser = User.find(session[:user_id]).id
   end
   
+  #Post creation, actually submitting data
   def post_create
     picture = params[:photo]
     if picture == nil
