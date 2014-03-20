@@ -1,22 +1,28 @@
 class UserController < ApplicationController
+
+  #Dashboard page
 	def dashboard
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 	end
 
+  #Inbox page
 	def inbox
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
     @emails = Email.find_all_by_receiver(@current_user)
 	end
 
-	def listings
+	#Shows a user's listings
+  def listings
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		@listings = Listing.find_all_by_user_id(@current_user)
 	end
 
+  #Edit a listing
 	def edit
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 	end
 
+  #Updates the listing after the user submits an edit
 	def update
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 		picture = params[:photo]
@@ -38,6 +44,7 @@ class UserController < ApplicationController
 
 	end
 
+  #Post-crop actions
   def post_crop
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     w = params[:w]
@@ -59,10 +66,12 @@ class UserController < ApplicationController
     redirect_to :controller => :user, :action => :profile
   end
 
+  #Sending an email page
   def email
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  #Post email sending, redirects back to inbox
   def post_email
     @email = Email.new
     @email.subject = params[:subject]
@@ -78,6 +87,7 @@ class UserController < ApplicationController
     end
   end
 
+  #displays the page that has the thread between a user and the sender
   def thread
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     @emails = Email.all
