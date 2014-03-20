@@ -4,6 +4,16 @@
   <fieldset>
   <legend>Filter by category and date available</legend>
 
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="categorygroup">Category</label>
+    <div class="btn-group col-md-4" data-toggle="buttons" id="categorygroup">
+      <% @categories.each do |c| %>
+        <label for=<%= c %> id=<%= c %>Label class="btn btn-default"><%= c %></label>
+        <%= check_box_tag c, c, false, name: 'checkboxes[]', style:'display:none;' -%>
+      <% end %>
+  </div>
+  </div>
+
  <div class="form-group">
     <%= label_tag(:dates, "Date available", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class = "col-md-4 input-group date" style="padding-left: 15px;">
@@ -13,16 +23,6 @@
   <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
 
   <div class="form-group">
-  	<label class="col-md-4 control-label" for="categorygroup">Category</label>
-  	<div class="btn-group col-md-4" data-toggle="buttons" id="categorygroup">
-  		<% @categories.each do |c| %>
-  			<label for=<%= c %> id=<%= c %>Label class="btn btn-default"><%= c %></label>
-  			<%= check_box_tag c, c, false, name: 'checkboxes[]', style:'display:none;' -%>
-  		<% end %>
-	</div>
-  </div>
-
-  <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>
     <div class="col-md-4">
       <%= submit_tag("Search", :class=>"btn btn-primary", :id=>"singlebutton", :onclick => "return getDates()") %>
@@ -30,45 +30,50 @@
   </div>
 </fieldset>
 <% end %>
-<script>
-$('#cal').datepicker({
-        startDate: "today",
-        todayHighlight: true,
-        format: "mm-dd-yyyy"
-      });
-      function getDates() {
-        $('#dates').val($('#cal').datepicker("getDates"));
-      }
 
-$('#EatLabel').on('click', function(){
-	var obj = document.getElementById('Eat');
-  	if (!obj.checked)
-  		obj.checked=true;
-  	else
-  		obj.checked=false;
-});
-$('#OutdoorsLabel').on('click', function(){
-  var obj = document.getElementById('Outdoors');
-  	if (!obj.checked)
-  		obj.checked=true;
-  	else
-  		obj.checked=false;
-});
 
-$('#NightlifeLabel').on('click', function(){
-  var obj = document.getElementById('Nightlife');
-  	if (!obj.checked)
-  		obj.checked=true;
-  	else
-  		obj.checked=false;
-});
+<% content_for (:foot) do %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
+  <script>
+  $('#cal').datepicker({
+    startDate: "today",
+    todayHighlight: true,
+    format: "mm-dd-yyyy"
+  });
+  function getDates() {
+    $('#dates').val($('#cal').datepicker("getDates"));
+  }
 
-$('#SightseeingLabel').on('click', function(){
-  var obj = document.getElementById('Sightseeing');
-  	if (!obj.checked)
-  		obj.checked=true;
-  	else
-  		obj.checked=false;
-});
+  $('#EatLabel').on('click', function(){
+    var obj = document.getElementById('Eat');
+      if (!obj.checked)
+        obj.checked=true;
+      else
+        obj.checked=false;
+  });
+  $('#OutdoorsLabel').on('click', function(){
+    var obj = document.getElementById('Outdoors');
+      if (!obj.checked)
+        obj.checked=true;
+      else
+        obj.checked=false;
+  });
 
-</script>
+  $('#NightlifeLabel').on('click', function(){
+    var obj = document.getElementById('Nightlife');
+      if (!obj.checked)
+        obj.checked=true;
+      else
+        obj.checked=false;
+  });
+
+  $('#SightseeingLabel').on('click', function(){
+    var obj = document.getElementById('Sightseeing');
+      if (!obj.checked)
+        obj.checked=true;
+      else
+        obj.checked=false;
+  });
+
+  </script>
+<% end %>
