@@ -14,11 +14,25 @@
     <%= label_tag(:description, "Description", :class => "col-md-4 control-label", :for => "text-input", :name => "description") %>
     <div class="col-md-4"><%= text_area_tag(:description, nil, :class => "form-control", :id => "textarea", :rows => "3") %></div>
   </div>
+
+  <div class="form-group">
+    <%= label_tag(:category, "Category", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :category, options_for_select(['Eat', 'Nightlife', 'Outdoors', 'Sightseeing']), :id => "selectbasic", :class => "form-control"%></div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:city, "City", :class => "col-md-4 control-label", :for => "selectbasic") %>
+    <div class="col-md-4"><%= select_tag :city, options_for_select(['New York', 'San Francisco']), :id => "selectbasic", :class => "form-control"%></div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:address, "Address", :class => "col-md-4 control-label", :for => "text-input") %>
+    <div class="col-md-4"><%= text_field_tag(:address, nil, :class => "form-control input-md", :placeholder => "e.g. 1600 Amphitheatre Parkway, Mountain View, CA") %></div>
+  </div>
+
   <div class="form-group">
     <%= label_tag(:dates, "Dates", :class => "col-md-4 control-label", :for => "text-input") %>
     <div class = "col-md-4 input-group date" style="padding-left: 15px;">
       <input id="cal" type="text" class="form-control">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     </div>
   </div>
   <%= hidden_field_tag(:dates, nil, :class => "form-control", :value => "hi", :id => "dates") %>
@@ -36,20 +50,8 @@
   </script>
 
   <div class="form-group">
-    <%= label_tag(:category, "Category", :class => "col-md-4 control-label", :for => "selectbasic") %>
-    <div class="col-md-4"><%= select_tag :category, options_for_select(['Eat', 'Nightlife', 'Outdoors', 'Sightseeing']), :id => "selectbasic", :class => "form-control"%></div>
-  </div>
-  <div class="form-group">
-    <%= label_tag(:city, "City", :class => "col-md-4 control-label", :for => "selectbasic") %>
-    <div class="col-md-4"><%= select_tag :city, options_for_select(['New York', 'San Francisco']), :id => "selectbasic", :class => "form-control"%></div>
-  </div>
-  <div class="form-group">
     <%= label_tag(:photo, "Upload Photo", :class => "col-md-4 control-label", :for => "filebutton", :name => "photo") %>
     <div class="col-md-4"><%= file_field_tag(:photo, :class => "input-file", :id => "filebutton") %></div>
-  </div>
-  <div class="form-group">
-    <%= label_tag(:address, "Address", :class => "col-md-4 control-label", :for => "text-input") %>
-    <div class="col-md-4"><%= text_field_tag(:address, nil, :class => "form-control input-md", :placeholder => "e.g. 1600 Amphitheatre Parkway, Mountain View, CA") %></div>
   </div>
   <div class="form-group">
     <label class="col-md-4 control-label" for="singlebutton"></label>

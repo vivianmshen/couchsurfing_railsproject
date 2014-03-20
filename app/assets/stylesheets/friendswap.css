@@ -1,3 +1,13 @@
+.row, .col-md-7 {
+	height: 100%;
+}
+
+#map_canvas {
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+}
+
 * {
 	margin: 0;
 }
@@ -172,11 +182,13 @@ img.thumb {
 }
 
 img.ev {
-	display: block;
+	display: inline-block;
+	min-height: 200px;
 	height: auto;
-	height: 400px;
-	margin-left: auto;
-	margin-right: auto;
+	vertical-align: top;
+	max-height: 400px;
+	min-width: 300px;
+	width: auto\9;
 }
 
 .well {

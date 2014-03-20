@@ -146,7 +146,7 @@ class ListingsController < ApplicationController
                        "address" => params[:address],
                        "category" => params[:category]}
       @listing.update_attributes(submission_hash)
-      redirect_to :action => :listing, :id => listing_id
+      redirect_to :action => :listing, :id => @listing.id
     end
   end
 
@@ -160,7 +160,7 @@ class ListingsController < ApplicationController
     require 'open-uri'
     if File.exist?(Rails.root.join('app', 'assets', 'images', @listing.photo))
       img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @listing.photo))
-      img.resize('800x500')
+      img.resize('900x600')
       img.crop("#{w}x#{h}+#{x1}+#{y1}")
       img.write(Rails.root.join('app', 'assets', 'images', @listing.user_id.to_s + '_' + @listing.id.to_s + '.jpg'))
       img

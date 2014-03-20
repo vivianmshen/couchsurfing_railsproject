@@ -40,6 +40,16 @@ function validateListingForm() {
 		alert("Review description must be filled out.");
 	  return false;
   }
+  var address = document.forms["listingform"]["address"].value;
+	if (address == null || address == "") {
+		alert("Address must be filled out.");
+	  return false;
+  }
+  var dates = document.forms["listingform"]["dates"].value;
+	if (dates == null || dates == "") {
+		alert("At least one date must be specified.");
+	  return false;
+  }
   var photo = document.forms["listingform"]["photo"].value;
 	if (photo == null || photo == "") {
 		alert("Please specify a valid photo.");
@@ -56,6 +66,16 @@ function validateListingFormEdit() {
   var description = document.forms["listingform"]["description"].value;
 	if (description == null || description == "") {
 		alert("Review description must be filled out.");
+	  return false;
+  }
+  var address = document.forms["listingform"]["address"].value;
+	if (address == null || address == "") {
+		alert("Address must be filled out.");
+	  return false;
+  }
+  var dates = document.forms["listingform"]["dates"].value;
+	if (dates == null || dates == "") {
+		alert("At least one date must be specified.");
 	  return false;
   }
 }

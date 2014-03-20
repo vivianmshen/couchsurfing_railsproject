@@ -48,7 +48,7 @@ class UserController < ApplicationController
     require 'open-uri'
     if File.exist?(Rails.root.join('app', 'assets', 'images', @current_user.photo))
       img = MiniMagick::Image.open(Rails.root.join('app', 'assets', 'images', @current_user.photo))
-      img.resize('900x600')
+      img.resize('800x500')
       img.crop("#{w}x#{h}+#{x1}+#{y1}")
       img.write(Rails.root.join('app', 'assets', 'images', @current_user.uid + '.jpg'))
       img
@@ -70,7 +70,7 @@ class UserController < ApplicationController
     @email.sender = User.find(params[:sender]).id
     @email.receiver = params[:receiver]
     @email.save()
-    flash[:notice] = "Email sent successfully."
+#    flash[:notice] = "Email sent successfully."
     if params[:linkedfrom] == 'listing'
       redirect_to :controller => :listings, :action => :listing, :id => params[:listing]
     else

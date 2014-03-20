@@ -6,9 +6,19 @@
 				<h4><%= @listing.description %></h4>
 				<%= link_to "Edit Listing", :controller => 'listings', :action => 'edit', :listing => @listing.id%>
 				<div class="event">
-					<%= image_tag(asset_path(@listing.photo), :alt => @listing.name, :class => "ev") %>
+					<center><%= image_tag(asset_path(@listing.photo), :alt => @listing.name, :class => "ev") %></center>
 				</div>
 			</div>
+
+			<div class="well well-lg">
+				<h1>Location</h1>
+				<h4><%= @listing.address %></h4>
+				<center>
+					<div id="map_canvas" style="width: 600px; height: 400px;"></div>
+				</center>
+				<%= hidden_field_tag(:address, nil, :class => "form-control", :value => @address, :id => "mapaddress") %>
+			</div>
+
 			<div class="well well-lg">
 				<h1>Reviews</h1>
 				<% if @average == -1 %>
@@ -37,7 +47,6 @@
 				<% end %>
 			</div>
 		</div>
-
 		<div class="col-md-5">
 			<div class="well well-lg">
 				<center><h4>Dates Available</h4></center>
@@ -50,19 +59,16 @@
 				</div>
 				<center><h3><%= @listing.user.name %></h3>
 				<p><%= link_to "More about this host", :controller => 'listings', :action => 'user', :id => @listing.user%></p>
-				<a class="btn btn-primary" href="mailto:<%= @email %>?Subject=Hello" target="_top">Contact</a></center>
-				<%= link_to "Send Message", :controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'%>
+				<%= link_to "Send Message", {:controller => 'user', :action => 'email', :id => @listing.user, :listing => params[:id], :linkedfrom => 'listing'}, :class => "btn btn-primary" %>
+				</center>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="map_canvas" style="width: 600px; height: 400px"></div>
-<%= hidden_field_tag(:address, nil, :class => "form-control", :value => @address, :id => "mapaddress") %>
 
 <script>
 	var map = null;
 	var geocoder = null;
-
     function initialize(address) {
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map_canvas"));
@@ -106,4 +112,6 @@
 			}
 		}
       });
+
+	
 </script>
